@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
-    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" />
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="40" />
   </a>
 </p>
 
