@@ -4,13 +4,8 @@ import ThemeRenderer from '../components/themes/ThemeRenderer.astro';
 import { siteConfig } from '../utils/config';
 import type { ThemeName, Language } from '../types/site';
 
-// Support live query parameters for theme and language switching in SSG/preview
-const url = Astro.url;
-const themeParam = url.searchParams.get('theme') as ThemeName | null;
-const langParam = url.searchParams.get('lang') as Language | null;
-
-const activeTheme: ThemeName = themeParam || siteConfig.theme;
-const activeLang: Language = langParam || siteConfig.defaultLanguage;
+const activeTheme: ThemeName = siteConfig.theme;
+const activeLang: Language = siteConfig.defaultLanguage;
 const isBioLink = activeTheme === 'bio-link';
 ---
 
@@ -22,3 +17,16 @@ const isBioLink = activeTheme === 'bio-link';
 >
   <ThemeRenderer theme={activeTheme} lang={activeLang} />
 </BaseLayout>
+
+<script is:inline>
+  // Instant redirect if visiting with query param ?theme=... in SSG mode
+  (function () {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const theme = urlParams.get('theme');
+      if (theme) {
+        window.location.replace('/preview/' + encodeURIComponent(theme) + window.location.search);
+      }
+    } catch (e) {}
+  })();
+</script>

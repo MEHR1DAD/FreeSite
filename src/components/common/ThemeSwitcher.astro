@@ -1,5 +1,5 @@
 ---
-import { THEME_NAMES } from '../../utils/config';
+import { THEME_NAMES, siteConfig } from '../../utils/config';
 import type { ThemeName, Language } from '../../types/site';
 import Icon from './Icon.astro';
 
@@ -77,9 +77,10 @@ const businessThemes = Object.entries(THEME_NAMES).filter(
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {personalThemes.map(([themeKey, info]) => {
               const isCurrent = currentTheme === themeKey;
+              const isDefault = siteConfig.theme === themeKey;
               return (
                 <a
-                  href={`?theme=${themeKey}`}
+                  href={`/preview/${themeKey}`}
                   class={`flex items-center justify-between p-3 rounded-xl border transition-all text-sm ${
                     isCurrent
                       ? 'bg-indigo-600/20 border-indigo-500 text-indigo-200 shadow-md shadow-indigo-500/10'
@@ -90,11 +91,18 @@ const businessThemes = Object.entries(THEME_NAMES).filter(
                     <span class="text-lg">{info.icon}</span>
                     <span class="font-medium">{lang === 'fa' ? info.nameFa : info.nameEn}</span>
                   </div>
-                  {isCurrent && (
-                    <span class="text-xs px-2 py-0.5 rounded-md bg-indigo-500 text-white font-medium">
-                      {lang === 'fa' ? 'فعال' : 'Active'}
-                    </span>
-                  )}
+                  <div class="flex items-center gap-1.5">
+                    {isDefault && (
+                      <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">
+                        {lang === 'fa' ? 'پیش‌فرض' : 'Default'}
+                      </span>
+                    )}
+                    {isCurrent && (
+                      <span class="text-xs px-2 py-0.5 rounded-md bg-indigo-500 text-white font-medium">
+                        {lang === 'fa' ? 'فعال' : 'Active'}
+                      </span>
+                    )}
+                  </div>
                 </a>
               );
             })}
@@ -112,9 +120,10 @@ const businessThemes = Object.entries(THEME_NAMES).filter(
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {businessThemes.map(([themeKey, info]) => {
               const isCurrent = currentTheme === themeKey;
+              const isDefault = siteConfig.theme === themeKey;
               return (
                 <a
-                  href={`?theme=${themeKey}`}
+                  href={`/preview/${themeKey}`}
                   class={`flex items-center justify-between p-3 rounded-xl border transition-all text-sm ${
                     isCurrent
                       ? 'bg-emerald-600/20 border-emerald-500 text-emerald-200 shadow-md shadow-emerald-500/10'
@@ -125,11 +134,18 @@ const businessThemes = Object.entries(THEME_NAMES).filter(
                     <span class="text-lg">{info.icon}</span>
                     <span class="font-medium">{lang === 'fa' ? info.nameFa : info.nameEn}</span>
                   </div>
-                  {isCurrent && (
-                    <span class="text-xs px-2 py-0.5 rounded-md bg-emerald-500 text-white font-medium">
-                      {lang === 'fa' ? 'فعال' : 'Active'}
-                    </span>
-                  )}
+                  <div class="flex items-center gap-1.5">
+                    {isDefault && (
+                      <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">
+                        {lang === 'fa' ? 'پیش‌فرض' : 'Default'}
+                      </span>
+                    )}
+                    {isCurrent && (
+                      <span class="text-xs px-2 py-0.5 rounded-md bg-emerald-500 text-white font-medium">
+                        {lang === 'fa' ? 'فعال' : 'Active'}
+                      </span>
+                    )}
+                  </div>
                 </a>
               );
             })}
@@ -137,17 +153,20 @@ const businessThemes = Object.entries(THEME_NAMES).filter(
         </div>
       </div>
 
-      <!-- Footer CTA to Admin -->
-      <div class="p-4 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between">
-        <span class="text-xs text-slate-400">
-          {lang === 'fa' ? 'برای تثبیت قالب پیش‌فرض به پنل ادمین بروید:' : 'To set your permanent theme, visit admin:'}
-        </span>
+      <!-- Footer Actions -->
+      <div class="p-4 border-t border-slate-800 bg-slate-950/60 flex flex-wrap items-center justify-between gap-3">
+        <a
+          href="/"
+          class="text-xs text-slate-400 hover:text-white underline transition"
+        >
+          {lang === 'fa' ? '🏠 بازگشت به صفحه اصلی سایت' : '🏠 Back to Default Home'}
+        </a>
         <a
           href="/admin"
           class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition"
         >
           <Icon name="settings" class="w-4 h-4 text-indigo-400" />
-          <span>/admin</span>
+          <span>{lang === 'fa' ? 'تنظیم در ادمین (/admin)' : 'Set in /admin'}</span>
         </a>
       </div>
     </div>

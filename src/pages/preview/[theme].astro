@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThemeRenderer from '../../components/themes/ThemeRenderer.astro';
+import { siteConfig, THEME_NAMES } from '../../utils/config';
+import type { ThemeName, Language } from '../../types/site';
+
+export async function getStaticPaths() {
+  const themes = Object.keys(THEME_NAMES) as ThemeName[];
+  return themes.map((theme) => ({
+    params: { theme },
+    props: { themeName: theme },
+  }));
+}
+
+interface Props {
+  themeName: ThemeName;
+}
+
+const { themeName } = Astro.props;
+const activeLang: Language = siteConfig.defaultLanguage;
+const isBioLink = themeName === 'bio-link';
+---
+
+<BaseLayout
+  activeTheme={themeName}
+  lang={activeLang}
+  hideNavbar={isBioLink}
+  hideFooter={isBioLink}
+>
+  <ThemeRenderer theme={themeName} lang={activeLang} />
+</BaseLayout>
