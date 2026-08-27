@@ -1,5 +1,6 @@
 ---
 import type { ThemeName, Language } from '../../types/site';
+import { siteConfig } from '../../utils/config';
 
 // Personal Themes
 import MinimalDark from './personal/MinimalDark.astro';
@@ -20,25 +21,27 @@ import ProductShowcase from './business/ProductShowcase.astro';
 import StartupSaas from './business/StartupSaas.astro';
 
 interface Props {
-  theme: ThemeName;
-  lang: Language;
+  theme?: ThemeName;
+  currentTheme?: ThemeName;
+  lang?: Language;
 }
 
-const { theme, lang } = Astro.props;
+const { theme, currentTheme, lang = siteConfig.defaultLanguage } = Astro.props;
+const activeTheme: ThemeName = (currentTheme || theme || siteConfig.theme) as ThemeName;
 ---
 
-{theme === 'minimal-dark' && <MinimalDark lang={lang} />}
-{theme === 'minimal-light' && <MinimalLight lang={lang} />}
-{theme === 'card-bento' && <CardBento lang={lang} />}
-{theme === 'resume-cv' && <ResumeCv lang={lang} />}
-{theme === 'terminal-tech' && <TerminalTech lang={lang} />}
-{theme === 'glassmorphism' && <Glassmorphism lang={lang} />}
-{theme === 'cyberpunk-neon' && <CyberpunkNeon lang={lang} />}
-{theme === 'aurora-gradient' && <AuroraGradient lang={lang} />}
-{theme === 'developer-portfolio' && <DeveloperPortfolio lang={lang} />}
-{theme === 'bio-link' && <BioLink lang={lang} />}
+{activeTheme === 'minimal-dark' && <MinimalDark lang={lang} />}
+{activeTheme === 'minimal-light' && <MinimalLight lang={lang} />}
+{activeTheme === 'card-bento' && <CardBento lang={lang} />}
+{activeTheme === 'resume-cv' && <ResumeCv lang={lang} />}
+{activeTheme === 'terminal-tech' && <TerminalTech lang={lang} />}
+{activeTheme === 'glassmorphism' && <Glassmorphism lang={lang} />}
+{activeTheme === 'cyberpunk-neon' && <CyberpunkNeon lang={lang} />}
+{activeTheme === 'aurora-gradient' && <AuroraGradient lang={lang} />}
+{activeTheme === 'developer-portfolio' && <DeveloperPortfolio lang={lang} />}
+{activeTheme === 'bio-link' && <BioLink lang={lang} />}
 
-{theme === 'corporate' && <Corporate lang={lang} />}
-{theme === 'services-consulting' && <ServicesConsulting lang={lang} />}
-{theme === 'product-showcase' && <ProductShowcase lang={lang} />}
-{theme === 'startup-saas' && <StartupSaas lang={lang} />}
+{activeTheme === 'corporate' && <Corporate lang={lang} />}
+{activeTheme === 'services-consulting' && <ServicesConsulting lang={lang} />}
+{activeTheme === 'product-showcase' && <ProductShowcase lang={lang} />}
+{activeTheme === 'startup-saas' && <StartupSaas lang={lang} />}

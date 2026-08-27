@@ -12,20 +12,21 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props {
-  themeName: ThemeName;
-}
-
+const { theme } = Astro.params;
 const { themeName } = Astro.props;
-const activeLang: Language = siteConfig.defaultLanguage;
-const isBioLink = themeName === 'bio-link';
+const currentTheme: ThemeName = (themeName || theme) as ThemeName;
+
+const url = Astro.url;
+const langParam = url.searchParams.get('lang') as Language | null;
+const activeLang: Language = langParam || siteConfig.defaultLanguage;
+const isBioLink = currentTheme === 'bio-link';
 ---
 
 <BaseLayout
-  activeTheme={themeName}
+  activeTheme={currentTheme}
   lang={activeLang}
   hideNavbar={isBioLink}
   hideFooter={isBioLink}
 >
-  <ThemeRenderer theme={themeName} lang={activeLang} />
+  <ThemeRenderer currentTheme={currentTheme} theme={currentTheme} lang={activeLang} />
 </BaseLayout>
