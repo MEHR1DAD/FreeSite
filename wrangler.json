@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "freesite",
+  "compatibility_date": "2026-08-26",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "build": {
+    "command": "npm run build"
+  }
+}

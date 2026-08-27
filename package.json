@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "description": "Free, open-source, no-code static website builder powered by Astro, Tailwind CSS, and Sveltia/Decap CMS.",
   "scripts": {
-    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
-    "start": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
-    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
