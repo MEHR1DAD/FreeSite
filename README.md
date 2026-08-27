@@ -3,7 +3,7 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
+  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
     <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="40" />
   </a>
 </p>
@@ -70,7 +70,10 @@
 ### مرحله ۱: استقرار خودکار
 روی دکمه زیر کلیک کنید تا مخزن به حساب گیت‌هاب شما متصل شده و بیلد اولیه روی کلودفلر انجام شود:
 
-[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite)
+[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
+
+یا از طریق لینک مستقیم زیر اقدام فرمایید:
+🔗 [راه‌اندازی خودکار در Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
 
 ### مرحله ۲: تنظیمات بیلد (Build Settings)
 در صورتی که به صورت دستی ریپازیتوری را در Cloudflare Pages اضافه می‌کنید:
