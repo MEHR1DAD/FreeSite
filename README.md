@@ -3,8 +3,8 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
-    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare" height="40" />
+  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="40" />
   </a>
 </p>
 
@@ -65,24 +65,19 @@
 
 ---
 
-## 🚀 استقرار با یک کلیک (Deploy to Cloudflare)
+## 🚀 استقرار مستقیم در Cloudflare Pages (Deploy to Cloudflare Pages)
 
-### روش ۱: استقرار ۱۰۰٪ خودکار و ۱-کلیکه (پیشنهادی)
-روی دکمه رسمی زیر کلیک کنید تا مخزن در گیت‌هاب شما فورک/کلون شده و بر اساس فایل `wrangler.json`، کلودفلر بدون نیاز به پر کردن هیچ فرمی پروژه را مستقر کند:
+روی دکمه رسمی زیر کلیک کنید تا مستقیماً وارد پنل ایجاد و اتصال پروژه در Cloudflare Pages شوید:
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite)
+[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
 
----
-
-### روش ۲: اتصال دستی از طریق پنل Cloudflare Pages
-در صورتی که می‌خواهید مخزن را مستقیماً از داشبورد کلودفلر اضافه فرمایید:
-1. در داشبورد کلودفلر به بخش **Workers & Pages > Create application > Pages > Connect to Git** بروید.
-2. ریپازیتوری خود را انتخاب کنید.
-3. در بخش تنظیمات بیلد:
-   - **Framework preset**: `Astro` (یا `None`)
+### مراحل سریع اتصال به Cloudflare Pages:
+1. در داشبورد کلودفلر، ریپازیتوری **FreeSite** خود را انتخاب کنید.
+2. تنظیمات بیلد:
+   - **Framework Preset**: `Astro`
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
-4. بر روی **Save and Deploy** کلیک کنید.
+3. بر روی دکمه **Save and Deploy** کلیک کنید. پس از ۱ دقیقه وب‌سایت شما بر روی دامنه اختصاصی `*.pages.dev` مستقر و آنلاین می‌شود!
 
 ---
 
