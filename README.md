@@ -65,19 +65,23 @@
 
 ---
 
-## 🚀 استقرار مستقیم در Cloudflare Pages (Deploy to Cloudflare Pages)
+## 🚀 راهنمای استقرار در Cloudflare Pages (Deploy to Cloudflare Pages)
 
-روی دکمه رسمی زیر کلیک کنید تا مستقیماً وارد پنل ایجاد و اتصال پروژه در Cloudflare Pages شوید:
+برای استقرار رایگان و اتصال وبسایت خود به کلودفلر، روی دکمه زیر کلیک کنید:
 
 [![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
 
-### مراحل سریع اتصال به Cloudflare Pages:
-1. در داشبورد کلودفلر، ریپازیتوری **FreeSite** خود را انتخاب کنید.
-2. تنظیمات بیلد:
-   - **Framework Preset**: `Astro`
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
-3. بر روی دکمه **Save and Deploy** کلیک کنید. پس از ۱ دقیقه وب‌سایت شما بر روی دامنه اختصاصی `*.pages.dev` مستقر و آنلاین می‌شود!
+### 📋 ۳ گام ساده برای راه‌اندازی (Setup Steps):
+1. در داشبورد کلودفلر، ریپازیتوری **FreeSite** خود را انتخاب نمایید.
+2. در بخش تنظیمات بیلد (**Build settings**)، تنها کافیست در منوی کشویی **Framework preset** گزینه **`Astro`** را انتخاب کنید:
+
+| نام فیلد (Setting) | مقدار مورد نیاز (Value) | توضیحات |
+| :--- | :--- | :--- |
+| **Framework preset** | **`Astro`** | با انتخاب این گزینه، فیلدهای دستور بیلد و پوشه خروجی خودکار پر می‌شوند |
+| **Build command** | `npm run build` | دستور اجرای بیلد استاتیک پروژه |
+| **Build output directory** | `dist` | پوشه حاوی فایل‌های کامپایل‌شده وبسایت |
+
+3. بر روی دکمه **Save and Deploy** کلیک فرمایید. ظرف کمتر از ۱ دقیقه وب‌سایت شما بر روی دامنه اختصاصی و امن `https://your-project.pages.dev` آنلاین و فعال خواهد بود! 🚀
 
 ---
 
