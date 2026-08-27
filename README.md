@@ -3,8 +3,8 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
-    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="40" />
+  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare" height="40" />
   </a>
 </p>
 
@@ -65,22 +65,24 @@
 
 ---
 
-## 🚀 استقرار با یک کلیک (Deploy to Cloudflare Pages)
+## 🚀 استقرار با یک کلیک (Deploy to Cloudflare)
 
-### مرحله ۱: استقرار خودکار
-روی دکمه زیر کلیک کنید تا مخزن به حساب گیت‌هاب شما متصل شده و بیلد اولیه روی کلودفلر انجام شود:
+### روش ۱: استقرار ۱۰۰٪ خودکار و ۱-کلیکه (پیشنهادی)
+روی دکمه رسمی زیر کلیک کنید تا مخزن در گیت‌هاب شما فورک/کلون شده و بر اساس فایل `wrangler.json`، کلودفلر بدون نیاز به پر کردن هیچ فرمی پروژه را مستقر کند:
 
-[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite)
 
-یا از طریق لینک مستقیم زیر اقدام فرمایید:
-🔗 [راه‌اندازی خودکار در Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
+---
 
-### مرحله ۲: تنظیمات بیلد (Build Settings)
-در صورتی که به صورت دستی ریپازیتوری را در Cloudflare Pages اضافه می‌کنید:
-- **Framework Preset**: `Astro`
-- **Build command**: `npm run build`
-- **Build output directory**: `dist`
-- **Node.js Version**: `20` یا بالاتر (در متغیرهای محیطی: `NODE_VERSION = 20`)
+### روش ۲: اتصال دستی از طریق پنل Cloudflare Pages
+در صورتی که می‌خواهید مخزن را مستقیماً از داشبورد کلودفلر اضافه فرمایید:
+1. در داشبورد کلودفلر به بخش **Workers & Pages > Create application > Pages > Connect to Git** بروید.
+2. ریپازیتوری خود را انتخاب کنید.
+3. در بخش تنظیمات بیلد:
+   - **Framework preset**: `Astro` (یا `None`)
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+4. بر روی **Save and Deploy** کلیک کنید.
 
 ---
 
