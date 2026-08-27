@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="p1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="16" fill="url(#p1-grad)" />
+  <circle cx="500" cy="80" r="120" fill="#6366f1" opacity="0.15" />
+  <circle cx="100" cy="320" r="140" fill="#ec4899" opacity="0.1" />
+  <!-- Window Mockup -->
+  <rect x="80" y="70" width="440" height="260" rx="12" fill="#0f172a" stroke="#334155" stroke-width="2" />
+  <circle cx="104" cy="94" r="5" fill="#ef4444" />
+  <circle cx="120" cy="94" r="5" fill="#f59e0b" />
+  <circle cx="136" cy="94" r="5" fill="#10b981" />
+  <!-- UI Elements inside Mockup -->
+  <rect x="104" y="120" width="180" height="18" rx="4" fill="url(#accent-grad)" />
+  <rect x="104" y="150" width="280" height="10" rx="3" fill="#475569" />
+  <rect x="104" y="168" width="220" height="10" rx="3" fill="#334155" />
+  <!-- Grid Cards -->
+  <rect x="104" y="196" width="120" height="100" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+  <rect x="238" y="196" width="120" height="100" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+  <rect x="372" y="196" width="120" height="100" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+</svg>

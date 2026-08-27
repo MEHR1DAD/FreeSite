@@ -1,0 +1,108 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { profile, socials, links = [] } = siteConfig;
+---
+
+<div class="min-h-screen py-12 sm:py-20 flex flex-col items-center justify-center px-4">
+  <div class="w-full max-w-md mx-auto text-center space-y-6">
+    
+    <!-- Avatar & Header -->
+    <div class="space-y-4">
+      <div class="relative inline-block">
+        <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur opacity-75"></div>
+        <img
+          src={profile.avatar || '/images/avatar.svg'}
+          alt={getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+          class="relative w-28 h-28 rounded-full object-cover border-4 border-slate-900 bg-slate-900 mx-auto shadow-2xl"
+        />
+      </div>
+
+      <div class="space-y-1">
+        <div class="flex items-center justify-center gap-1.5">
+          <h1 class="text-2xl font-black text-white">
+            {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+          </h1>
+          <span class="text-blue-400" title="Verified">
+            <svg class="w-5 h-5 fill-current inline" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </span>
+        </div>
+        <p class="text-sm font-medium text-indigo-400">
+          {getLocalizedText(lang, profile.titleFa, profile.titleEn)}
+        </p>
+        <p class="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed pt-1">
+          {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Action Links -->
+    <div class="space-y-3 pt-2">
+      {links.map((link) => {
+        const isHighlight = link.highlight;
+        return (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`w-full p-4 rounded-2xl flex items-center justify-between text-sm font-bold transition duration-300 group shadow-lg ${
+              isHighlight
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:opacity-95 shadow-indigo-600/30'
+                : 'bg-slate-900/90 border border-slate-800 text-slate-200 hover:bg-slate-800 hover:border-slate-700'
+            }`}
+          >
+            <div class="flex items-center gap-3">
+              <Icon name={link.icon || 'link'} class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform" />
+              <span>{getLocalizedText(lang, link.titleFa, link.titleEn)}</span>
+            </div>
+            <Icon name="external-link" class="w-4 h-4 text-slate-400 group-hover:text-white transition" />
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Social Icons Row -->
+    <div class="pt-6 flex items-center justify-center gap-3 border-t border-slate-800">
+      {socials.github && (
+        <a href={socials.github} target="_blank" class="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition">
+          <Icon name="github" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.linkedin && (
+        <a href={socials.linkedin} target="_blank" class="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-blue-400 hover:bg-slate-800 transition">
+          <Icon name="linkedin" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.telegram && (
+        <a href={socials.telegram} target="_blank" class="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-sky-400 hover:bg-slate-800 transition">
+          <Icon name="telegram" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.email && (
+        <a href={`mailto:${socials.email}`} class="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:bg-slate-800 transition">
+          <Icon name="email" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.x && (
+        <a href={socials.x} target="_blank" class="p-3 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition">
+          <Icon name="x" class="w-4 h-4" />
+        </a>
+      )}
+    </div>
+
+    <!-- Engine Watermark -->
+    <p class="text-[11px] text-slate-500 font-mono pt-4">
+      ⚡ Powered by FreeSite Engine
+    </p>
+
+  </div>
+</div>

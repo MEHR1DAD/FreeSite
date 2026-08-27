@@ -1,0 +1,93 @@
+---
+import { siteConfig, getLocalizedText, getLangDir } from '../utils/config';
+import type { Language, ThemeName } from '../types/site';
+import Navbar from '../components/common/Navbar.astro';
+import Footer from '../components/common/Footer.astro';
+import ThemeSwitcher from '../components/common/ThemeSwitcher.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  activeTheme?: ThemeName;
+  lang?: Language;
+  hideNavbar?: boolean;
+  hideFooter?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = siteConfig.profile.avatar || '/images/avatar.svg',
+  activeTheme = siteConfig.theme,
+  lang = siteConfig.defaultLanguage,
+  hideNavbar = false,
+  hideFooter = false,
+} = Astro.props;
+
+const isBusiness = siteConfig.siteType === 'business';
+const brandName = isBusiness
+  ? getLocalizedText(lang, siteConfig.business?.companyNameFa, siteConfig.business?.companyNameEn)
+  : getLocalizedText(lang, siteConfig.profile.nameFa, siteConfig.profile.nameEn);
+
+const defaultTitle = isBusiness
+  ? `${brandName} | ${getLocalizedText(lang, siteConfig.business?.taglineFa, siteConfig.business?.taglineEn)}`
+  : `${brandName} | ${getLocalizedText(lang, siteConfig.profile.titleFa, siteConfig.profile.titleEn)}`;
+
+const pageTitle = title ? `${title} | ${brandName}` : defaultTitle;
+const pageDescription = description || (
+  isBusiness
+    ? getLocalizedText(lang, siteConfig.business?.descriptionFa, siteConfig.business?.descriptionEn)
+    : getLocalizedText(lang, siteConfig.profile.bioFa, siteConfig.profile.bioEn)
+);
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://freesite.pages.dev');
+const dir = getLangDir(lang);
+---
+
+<!doctype html>
+<html lang={lang} dir={dir} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Google Fonts Preconnect for Vazirmatn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen">
+    {!hideNavbar && <Navbar lang={lang} />}
+    
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+
+    {!hideFooter && <Footer lang={lang} />}
+
+    <!-- Live Theme Switcher Floating Drawer -->
+    <ThemeSwitcher currentTheme={activeTheme} lang={lang} />
+  </body>
+</html>

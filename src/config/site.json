@@ -1,0 +1,244 @@
+{
+  "siteType": "personal",
+  "theme": "minimal-dark",
+  "defaultLanguage": "fa",
+  "isBilingual": true,
+  "profile": {
+    "nameFa": "مهرداد رضایی",
+    "nameEn": "Mehrdad Rezaei",
+    "titleFa": "مهندس نرم‌افزار و طراح محصول دیجیتال",
+    "titleEn": "Software Engineer & Digital Product Designer",
+    "bioFa": "بیش از ۸ سال تجربه در توسعه وب‌اپلیکیشن‌های پیشرفته، معماری Jamstack و ابزارهای هوش مصنوعی. مشتاق ساخت تجربیات کاربری سریع، زیبا و دسترسی‌پذیر.",
+    "bioEn": "8+ years building modern web applications, Jamstack architectures, and AI tools. Passionate about crafting ultra-fast, elegant, and accessible user experiences.",
+    "avatar": "/images/avatar.svg",
+    "logo": "/images/logo.svg",
+    "locationFa": "تهران، ایران",
+    "locationEn": "Tehran, Iran",
+    "availabilityFa": "آماده برای پروژه‌های جدید و همکاری",
+    "availabilityEn": "Available for new projects & collaborations"
+  },
+  "socials": {
+    "github": "https://github.com/mehrdad",
+    "linkedin": "https://linkedin.com/in/mehrdad",
+    "instagram": "https://instagram.com/mehrdad",
+    "telegram": "https://t.me/mehrdad",
+    "email": "contact@freesite.dev",
+    "x": "https://x.com/mehrdad",
+    "youtube": "https://youtube.com/@freesite",
+    "website": "https://freesite.pages.dev",
+    "phone": "+989120000000"
+  },
+  "business": {
+    "companyNameFa": "نوآوران داده و وب فردا",
+    "companyNameEn": "NextGen Web & Data Solutions",
+    "taglineFa": "راه‌کارهای پیشرفته وب، طراحی مدرن و تحول دیجیتال ابری",
+    "taglineEn": "Advanced Web Solutions, Modern Design & Cloud Digital Transformation",
+    "descriptionFa": "ما به استارتاپ‌ها و سازمان‌ها کمک می‌کنیم تا با استفاده از جدیدترین تکنولوژی‌های وب سریع، پایدار و بدون قطعی رشد کنند.",
+    "descriptionEn": "We empower startups and enterprises to scale with edge computing, blazing fast static web apps, and modern architectures.",
+    "addressFa": "تهران، میدان آزادی، بزرگراه لشگری، کارخانه نوآوری",
+    "addressEn": "Innovation Factory, Lashgari Expwy, Tehran, Iran",
+    "ctaFa": "درخواست مشاوره رایگان",
+    "ctaEn": "Book Free Consultation",
+    "ctaLink": "#contact",
+    "stats": [
+      {
+        "labelFa": "پروژه موفق",
+        "labelEn": "Completed Projects",
+        "value": "+۱۲۰",
+        "icon": "check-circle"
+      },
+      {
+        "labelFa": "مشتری راضی",
+        "labelEn": "Happy Clients",
+        "value": "+۸۵",
+        "icon": "users"
+      },
+      {
+        "labelFa": "سال تجربه تخصصی",
+        "labelEn": "Years Experience",
+        "value": "۸+",
+        "icon": "award"
+      },
+      {
+        "labelFa": "امتیاز رضایت",
+        "labelEn": "Satisfaction Rate",
+        "value": "۹۹٪",
+        "icon": "star"
+      }
+    ]
+  },
+  "skills": [
+    "TypeScript",
+    "Astro SSG",
+    "Tailwind CSS",
+    "React / Next.js",
+    "Node.js",
+    "Python",
+    "Cloudflare Edge",
+    "Git & GitHub",
+    "Figma UI/UX",
+    "Docker"
+  ],
+  "experiences": [
+    {
+      "roleFa": "توسعه‌دهنده ارشد فرانت‌اند و لید تیم",
+      "roleEn": "Senior Frontend Developer & Team Lead",
+      "companyFa": "استودیو فناوری نوین",
+      "companyEn": "Novin Tech Studio",
+      "periodFa": "۱۴۰۱ - اکنون",
+      "periodEn": "2022 - Present",
+      "descFa": "رهبری تیم توسعه فرانت‌اند، بازطراحی کامل پلتفرم و کاهش ۶۰ درصدی زمان بارگذاری صفحات با معماری Jamstack.",
+      "descEn": "Led the frontend engineering team, rebuilt the core platform, and reduced page load times by 60% with modern Jamstack."
+    },
+    {
+      "roleFa": "مهندس نرم‌افزار فول‌استک",
+      "roleEn": "Full Stack Software Engineer",
+      "companyFa": "شرکت راهکارهای ابری پیشرو",
+      "companyEn": "Pishro Cloud Solutions",
+      "periodFa": "۱۳۹۸ - ۱۴۰۱",
+      "periodEn": "2019 - 2022",
+      "descFa": "طراحی و پیاده‌سازی وب‌سرویس‌های مقیاس‌پذیر و پنل‌های ادمین سریع با تایپ‌اسکریپت و ری‌اکت.",
+      "descEn": "Designed and implemented scalable web services and high-performance admin dashboards using TypeScript and React."
+    },
+    {
+      "roleFa": "طراح رابط کاربری و وب",
+      "roleEn": "UI/UX & Web Designer",
+      "companyFa": "آژانس خلاق دیجیتال",
+      "companyEn": "Creative Digital Agency",
+      "periodFa": "۱۳۹۶ - ۱۳۹۸",
+      "periodEn": "2017 - 2019",
+      "descFa": "طراحی سیستم‌های دیزاین و پیاده‌سازی صفحات فرود واکنش‌گرا برای بیش از ۴۰ برند معتبر.",
+      "descEn": "Created design systems and delivered responsive landing pages for over 40 distinct brand clients."
+    }
+  ],
+  "services": [
+    {
+      "id": "web-dev",
+      "titleFa": "توسعه وبسایت فوق‌سریع",
+      "titleEn": "Blazing Fast Web Development",
+      "descFa": "ساخت وبسایت‌های استاتیک و بدون نیاز به سرور با Astro و بارگذاری در کمتر از ۱ ثانیه.",
+      "descEn": "Crafting serverless static websites powered by Astro with sub-second load speeds.",
+      "icon": "globe",
+      "priceFa": "از ۵ میلیون تومان",
+      "priceEn": "From $299"
+    },
+    {
+      "id": "ui-ux",
+      "titleFa": "طراحی UI/UX اختصاصی",
+      "titleEn": "Custom UI/UX Design",
+      "descFa": "طراحی مدرن، رابط کاربری کاربرپسند و ریسپانسیو در فیگما با رعایت اصول روز.",
+      "descEn": "Modern, intuitive, and responsive UI design in Figma aligned with industry standards.",
+      "icon": "palette",
+      "priceFa": "از ۴ میلیون تومان",
+      "priceEn": "From $249"
+    },
+    {
+      "id": "jamstack-cms",
+      "titleFa": "راه‌اندازی پنل ادمین بدون کد",
+      "titleEn": "No-Code CMS Integration",
+      "descFa": "اتصال پنل مدیریت Sveltia/Decap CMS به گیت‌هاب بدون نیاز به هاست و دیتابیس.",
+      "descEn": "Seamless Git-backed Sveltia/Decap CMS setup with zero hosting and database overhead.",
+      "icon": "layout-dashboard",
+      "priceFa": "از ۳ میلیون تومان",
+      "priceEn": "From $199"
+    },
+    {
+      "id": "seo-speed",
+      "titleFa": "بهینه‌سازی سئو و سرعت",
+      "titleEn": "SEO & Core Web Vitals",
+      "descFa": "ارتقای نمره Google PageSpeed به ۱۰۰ و پیکربندی متاتگ‌های سئو و ساختار Schema.",
+      "descEn": "Achieving 100 Google PageSpeed scores, structured schema, and advanced SEO tags.",
+      "icon": "trending-up",
+      "priceFa": "از ۳.۵ میلیون تومان",
+      "priceEn": "From $220"
+    }
+  ],
+  "products": [
+    {
+      "id": "starter-kit",
+      "nameFa": "قالب استارتر پورتفولیو پرو",
+      "nameEn": "Portfolio Pro Starter Kit",
+      "descFa": "قالب حرفه‌ای آماده برای برنامه‌نویسان و طراحان با پشتیبانی کامل از RTL و سئو.",
+      "descEn": "Professional ready-to-use template for developers and designers with full RTL and SEO.",
+      "priceFa": "رایگان و متن‌باز",
+      "priceEn": "Free & Open Source",
+      "image": "/images/sample-product-1.svg",
+      "badgeFa": "محبوب‌ترین",
+      "badgeEn": "Popular",
+      "link": "https://github.com"
+    },
+    {
+      "id": "saas-landing",
+      "nameFa": "قالب لندینگ‌پیج شرکتی و SaaS",
+      "nameEn": "SaaS & Corporate Landing",
+      "descFa": "طراحی خیره‌کننده با کامپوننت‌های مدرن، جدول قیمت‌گذاری و فرم ارتباط.",
+      "descEn": "Stunning design with modern components, interactive pricing tables, and contact flow.",
+      "priceFa": "رایگان و متن‌باز",
+      "priceEn": "Free & Open Source",
+      "image": "/images/sample-product-2.svg",
+      "badgeFa": "جدید",
+      "badgeEn": "New",
+      "link": "https://github.com"
+    }
+  ],
+  "links": [
+    {
+      "titleFa": "💻 مشاهده ریپازیتوری در گیت‌هاب",
+      "titleEn": "💻 View GitHub Repository",
+      "url": "https://github.com",
+      "icon": "github",
+      "highlight": true
+    },
+    {
+      "titleFa": "📄 دانلود آخرین نسخه رزومه (PDF)",
+      "titleEn": "📄 Download Latest Resume (PDF)",
+      "url": "#resume",
+      "icon": "file-text"
+    },
+    {
+      "titleFa": "💬 ارتباط مستقیم در تلگرام",
+      "titleEn": "💬 Direct Telegram Message",
+      "url": "https://t.me",
+      "icon": "send"
+    },
+    {
+      "titleFa": "💼 پروفایل لینکدین من",
+      "titleEn": "💼 LinkedIn Profile",
+      "url": "https://linkedin.com",
+      "icon": "linkedin"
+    },
+    {
+      "titleFa": "📮 ارسال ایمیل به من",
+      "titleEn": "📮 Send Me an Email",
+      "url": "mailto:contact@freesite.dev",
+      "icon": "mail"
+    }
+  ],
+  "faqs": [
+    {
+      "questionFa": "چگونه می‌توانم وب‌سایت خود را به صورت رایگان راه‌اندازی کنم؟",
+      "questionEn": "How can I deploy my website 100% for free?",
+      "answerFa": "با فشردن دکمه Deploy to Cloudflare Pages در مستندات گیت‌هاب، یک کپی از این ریپازیتوری در حساب شما ساخته شده و ظرف کمتر از ۲ دقیقه بر روی سرورهای ابری کلودفلر مستقر می‌شود.",
+      "answerEn": "By clicking 'Deploy to Cloudflare Pages' button in the README, a copy is created in your GitHub account and instantly deployed to Cloudflare's global edge network in under 2 minutes."
+    },
+    {
+      "questionFa": "آیا برای ویرایش محتوا به دانش برنامه‌نویسی نیاز است؟",
+      "questionEn": "Do I need coding skills to manage content?",
+      "answerFa": "خیر! با رفتن به آدرس yoursite.com/admin می‌توانید از طریق پنل گرافیکی بدون کد (Sveltia/Decap CMS) تمامی متون، تصاویر، تم‌ها و مقالات را ویرایش کنید.",
+      "answerEn": "Not at all! Just visit yoursite.com/admin to manage all texts, photos, themes, and articles via the intuitive visual no-code CMS."
+    },
+    {
+      "questionFa": "آیا تغییر تم به صورت زنده امکان‌پذیر است؟",
+      "questionEn": "Can I switch themes anytime?",
+      "answerFa": "بله، در پنل مدیریت می‌توانید از بین ۱۴ قالب شخصی و شرکتی هر قالبی را انتخاب کنید و سایت بلافاصله تغییر چهره می‌دهد.",
+      "answerEn": "Yes, you can choose among 14 personal and business themes in the admin panel and your site updates instantly."
+    }
+  ],
+  "navigation": [
+    { "labelFa": "صفحه اصلی", "labelEn": "Home", "href": "/" },
+    { "labelFa": "درباره ما", "labelEn": "About", "href": "/#about" },
+    { "labelFa": "خدمات", "labelEn": "Services", "href": "/#services" },
+    { "labelFa": "وبلاگ", "labelEn": "Blog", "href": "/blog" },
+    { "labelFa": "تماس", "labelEn": "Contact", "href": "/#contact" }
+  ]
+}

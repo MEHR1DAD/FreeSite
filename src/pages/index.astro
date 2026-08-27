@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ThemeRenderer from '../components/themes/ThemeRenderer.astro';
+import { siteConfig } from '../utils/config';
+import type { ThemeName, Language } from '../types/site';
+
+// Support live query parameters for theme and language switching in SSG/preview
+const url = Astro.url;
+const themeParam = url.searchParams.get('theme') as ThemeName | null;
+const langParam = url.searchParams.get('lang') as Language | null;
+
+const activeTheme: ThemeName = themeParam || siteConfig.theme;
+const activeLang: Language = langParam || siteConfig.defaultLanguage;
+const isBioLink = activeTheme === 'bio-link';
+---
+
+<BaseLayout
+  activeTheme={activeTheme}
+  lang={activeLang}
+  hideNavbar={isBioLink}
+  hideFooter={isBioLink}
+>
+  <ThemeRenderer theme={activeTheme} lang={activeLang} />
+</BaseLayout>

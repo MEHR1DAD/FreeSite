@@ -1,0 +1,145 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { profile, socials, skills = [], experiences = [] } = siteConfig;
+---
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 font-mono text-sm">
+  <!-- Terminal Window Container -->
+  <div class="bg-black/90 rounded-2xl border border-emerald-500/40 shadow-2xl shadow-emerald-950/40 overflow-hidden">
+    
+    <!-- Title Bar -->
+    <div class="bg-slate-900/90 px-4 py-3 border-b border-emerald-500/20 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+      </div>
+      <span class="text-xs text-slate-400 font-mono">bash - user@freesite:~</span>
+      <div class="w-12"></div>
+    </div>
+
+    <!-- Terminal Body -->
+    <div class="p-6 sm:p-8 space-y-8 text-emerald-400">
+      
+      <!-- Command 1: whoami -->
+      <div>
+        <div class="flex items-center gap-2 text-slate-400">
+          <span class="text-emerald-500 font-bold">➜</span>
+          <span class="text-cyan-400">~</span>
+          <span class="text-white">whoami</span>
+        </div>
+        <div class="mt-2 ps-4 text-white">
+          <p class="text-xl sm:text-2xl font-bold text-emerald-300">
+            {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+          </p>
+          <p class="text-slate-400 mt-1">
+            Role: <span class="text-yellow-400">{getLocalizedText(lang, profile.titleFa, profile.titleEn)}</span>
+          </p>
+          {profile.locationFa && (
+            <p class="text-slate-400">
+              Location: <span class="text-yellow-400">{getLocalizedText(lang, profile.locationFa, profile.locationEn)}</span>
+            </p>
+          )}
+        </div>
+      </div>
+
+      <!-- Command 2: cat bio.txt -->
+      <div>
+        <div class="flex items-center gap-2 text-slate-400">
+          <span class="text-emerald-500 font-bold">➜</span>
+          <span class="text-cyan-400">~</span>
+          <span class="text-white">cat bio.txt</span>
+        </div>
+        <div class="mt-2 ps-4 text-slate-300 leading-relaxed max-w-2xl bg-emerald-950/20 p-3 rounded-lg border border-emerald-900/30">
+          {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+        </div>
+      </div>
+
+      <!-- Command 3: ls -la skills/ -->
+      {skills.length > 0 && (
+        <div>
+          <div class="flex items-center gap-2 text-slate-400">
+            <span class="text-emerald-500 font-bold">➜</span>
+            <span class="text-cyan-400">~</span>
+            <span class="text-white">ls -la ./skills</span>
+          </div>
+          <div class="mt-2 ps-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {skills.map((skill) => (
+              <div class="flex items-center gap-2 text-cyan-300">
+                <span class="text-slate-600">drwx--</span>
+                <span>{skill}/</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Command 4: curl ./experience.json -->
+      {experiences.length > 0 && (
+        <div>
+          <div class="flex items-center gap-2 text-slate-400">
+            <span class="text-emerald-500 font-bold">➜</span>
+            <span class="text-cyan-400">~</span>
+            <span class="text-white">curl -s ./experience.json | jq .</span>
+          </div>
+          <div class="mt-2 ps-4 space-y-4">
+            {experiences.map((exp, idx) => (
+              <div class="bg-slate-900/60 p-4 rounded-lg border border-emerald-900/40 space-y-1">
+                <div class="flex justify-between text-yellow-300">
+                  <span>[{idx + 1}] {getLocalizedText(lang, exp.roleFa, exp.roleEn)}</span>
+                  <span class="text-slate-500 text-xs">({getLocalizedText(lang, exp.periodFa, exp.periodEn)})</span>
+                </div>
+                <p class="text-slate-400 text-xs">@ {getLocalizedText(lang, exp.companyFa, exp.companyEn)}</p>
+                <p class="text-slate-300 text-xs pt-1">{getLocalizedText(lang, exp.descFa, exp.descEn)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Command 5: contact --socials -->
+      <div>
+        <div class="flex items-center gap-2 text-slate-400">
+          <span class="text-emerald-500 font-bold">➜</span>
+          <span class="text-cyan-400">~</span>
+          <span class="text-white">contact --interactive</span>
+        </div>
+        <div class="mt-2 ps-4 flex flex-wrap gap-3">
+          {socials.email && (
+            <a
+              href={`mailto:${socials.email}`}
+              class="px-3 py-1.5 rounded bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500 hover:text-black transition"
+            >
+              mailto:{socials.email}
+            </a>
+          )}
+          {socials.github && (
+            <a
+              href={socials.github}
+              target="_blank"
+              class="px-3 py-1.5 rounded bg-slate-800 border border-slate-700 text-slate-300 hover:bg-slate-700 transition"
+            >
+              github.com
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Active Prompt with Blinking Cursor -->
+      <div class="flex items-center gap-2 text-slate-400 pt-2">
+        <span class="text-emerald-500 font-bold">➜</span>
+        <span class="text-cyan-400">~</span>
+        <span class="w-2.5 h-5 bg-emerald-400 animate-pulse"></span>
+      </div>
+
+    </div>
+  </div>
+</div>

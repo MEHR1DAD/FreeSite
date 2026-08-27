@@ -1,0 +1,182 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { profile, socials, skills = [], experiences = [], products = [] } = siteConfig;
+---
+
+<div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-16">
+  
+  <!-- Hero / Code Split Section -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-indigo-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>{getLocalizedText(lang, profile.availabilityFa, profile.availabilityEn) || 'Ready for hire & projects'}</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+        {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+      </h1>
+
+      <p class="text-xl font-mono text-indigo-400 font-bold">
+        const role = "{getLocalizedText(lang, profile.titleFa, profile.titleEn)}";
+      </p>
+
+      <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+        {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+      </p>
+
+      <div class="flex flex-wrap gap-3 pt-2">
+        {socials.github && (
+          <a
+            href={socials.github}
+            target="_blank"
+            class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-mono text-sm border border-slate-700 transition flex items-center gap-2"
+          >
+            <Icon name="github" class="w-4 h-4" />
+            <span>GitHub Profile</span>
+          </a>
+        )}
+        {socials.email && (
+          <a
+            href={`mailto:${socials.email}`}
+            class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-sm transition flex items-center gap-2 shadow-lg shadow-indigo-600/30"
+          >
+            <Icon name="email" class="w-4 h-4" />
+            <span>Email Me</span>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Interactive Code Mockup (Right) -->
+    <div class="lg:col-span-5">
+      <div class="rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden font-mono text-xs">
+        <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          </div>
+          <span class="text-slate-500">developer.ts</span>
+          <span class="text-indigo-400">TypeScript</span>
+        </div>
+        <div class="p-5 text-slate-300 space-y-2">
+          <p><span class="text-purple-400">interface</span> <span class="text-yellow-300">Developer</span> &#123;</p>
+          <p class="ps-4">name: <span class="text-emerald-300">'{getLocalizedText(lang, profile.nameFa, profile.nameEn)}'</span>;</p>
+          <p class="ps-4">skills: <span class="text-cyan-300">string[]</span>;</p>
+          <p class="ps-4">hardWorker: <span class="text-amber-400">true</span>;</p>
+          <p class="ps-4">lovesOpenSource: <span class="text-amber-400">true</span>;</p>
+          <p>&#125;;</p>
+          <p class="pt-2"><span class="text-purple-400">export const</span> <span class="text-blue-400">me</span>: <span class="text-yellow-300">Developer</span> = &#123;</p>
+          <p class="ps-4">skills: [<span class="text-emerald-300">'{skills.slice(0, 3).join("', '")}'</span>],</p>
+          <p class="ps-4">location: <span class="text-emerald-300">'{getLocalizedText(lang, profile.locationFa, profile.locationEn) || "Earth"}'</span>,</p>
+          <p>&#125;;</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Grid -->
+  {skills.length > 0 && (
+    <section class="space-y-6">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400">⚙️</span>
+        <span>{lang === 'fa' ? 'فناوری‌ها و ابزارها' : 'Stack & Technologies'}</span>
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+        {skills.map((skill) => (
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-between group hover:border-indigo-500/60 transition">
+            <span class="text-sm font-mono font-medium text-slate-200 group-hover:text-indigo-300">{skill}</span>
+            <span class="text-xs text-slate-600 font-mono">vLatest</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Featured Projects / Showcase -->
+  {products.length > 0 && (
+    <section class="space-y-6">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400">📦</span>
+        <span>{lang === 'fa' ? 'پروژه‌های شاخص و متن‌باز' : 'Featured Open Source Projects'}</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {products.map((item) => (
+          <div class="rounded-3xl bg-slate-900 border border-slate-800 overflow-hidden group hover:border-slate-700 transition flex flex-col justify-between">
+            <img src={item.image} alt={item.nameFa} class="w-full h-48 object-cover bg-slate-950" />
+            <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">
+                    {getLocalizedText(lang, item.nameFa, item.nameEn)}
+                  </h3>
+                  {item.badgeFa && (
+                    <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-indigo-950 text-indigo-300 border border-indigo-800">
+                      {getLocalizedText(lang, item.badgeFa, item.badgeEn)}
+                    </span>
+                  )}
+                </div>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 leading-relaxed">
+                  {getLocalizedText(lang, item.descFa, item.descEn)}
+                </p>
+              </div>
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+                <span class="text-xs font-mono text-indigo-400">{getLocalizedText(lang, item.priceFa, item.priceEn)}</span>
+                {item.link && (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    class="text-xs font-semibold text-white hover:text-indigo-400 flex items-center gap-1"
+                  >
+                    <span>{lang === 'fa' ? 'مشاهده سورس' : 'View Code'}</span>
+                    <Icon name="external-link" class="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Experiences Timeline -->
+  {experiences.length > 0 && (
+    <section class="space-y-6">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <span class="text-indigo-400">💼</span>
+        <span>{lang === 'fa' ? 'سوابق فعالیت حرفه‌ای' : 'Experience Timeline'}</span>
+      </h2>
+      <div class="space-y-4">
+        {experiences.map((exp) => (
+          <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <h3 class="text-base font-bold text-white">
+                {getLocalizedText(lang, exp.roleFa, exp.roleEn)}
+              </h3>
+              <span class="text-xs font-mono text-indigo-400 bg-slate-800 px-3 py-1 rounded-full w-fit">
+                {getLocalizedText(lang, exp.periodFa, exp.periodEn)}
+              </span>
+            </div>
+            <p class="text-xs font-bold text-slate-400">
+              {getLocalizedText(lang, exp.companyFa, exp.companyEn)}
+            </p>
+            <p class="text-sm text-slate-300 leading-relaxed pt-1">
+              {getLocalizedText(lang, exp.descFa, exp.descEn)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+</div>

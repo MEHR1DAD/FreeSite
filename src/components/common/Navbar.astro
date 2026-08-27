@@ -1,0 +1,67 @@
+---
+import { siteConfig, getLocalizedText } from '../../utils/config';
+import type { Language } from '../../types/site';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const profile = siteConfig.profile;
+const navItems = siteConfig.navigation || [];
+const isBusiness = siteConfig.siteType === 'business';
+const brandName = isBusiness 
+  ? getLocalizedText(lang, siteConfig.business?.companyNameFa, siteConfig.business?.companyNameEn)
+  : getLocalizedText(lang, profile.nameFa, profile.nameEn);
+---
+
+<header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/70 border-b border-slate-800/60">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand / Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <img
+        src={profile.logo || '/images/logo.svg'}
+        alt={brandName}
+        class="h-8 w-auto transition-transform duration-300 group-hover:scale-105"
+        onerror="this.style.display='none'"
+      />
+      <span class="font-bold text-lg text-white tracking-tight group-hover:text-indigo-400 transition-colors">
+        {brandName}
+      </span>
+    </a>
+
+    <!-- Nav links (Desktop) -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="hover:text-indigo-400 transition-colors py-1"
+        >
+          {getLocalizedText(lang, item.labelFa, item.labelEn)}
+        </a>
+      ))}
+      <a
+        href="/blog"
+        class="hover:text-indigo-400 transition-colors py-1"
+      >
+        {lang === 'fa' ? 'وبلاگ' : 'Blog'}
+      </a>
+    </nav>
+
+    <!-- Controls (Language Switcher & Admin Link) -->
+    <div class="flex items-center gap-3">
+      {siteConfig.isBilingual && <LanguageSwitcher currentLang={lang} />}
+      
+      <a
+        href="/admin"
+        title={lang === 'fa' ? 'ورود به پنل مدیریت بدون کد' : 'Go to No-Code CMS Admin'}
+        class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition"
+      >
+        <Icon name="settings" class="w-3.5 h-3.5 text-indigo-400" />
+        <span>{lang === 'fa' ? 'مدیریت' : 'Admin'}</span>
+      </a>
+    </div>
+  </div>
+</header>

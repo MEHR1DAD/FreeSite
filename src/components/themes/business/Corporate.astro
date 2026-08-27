@@ -1,0 +1,159 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { business, services = [], faqs = [], socials } = siteConfig;
+---
+
+<div class="space-y-24 py-12 sm:py-20">
+  
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 text-center space-y-8">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-950/70 border border-indigo-800/60 text-indigo-300 text-xs font-semibold">
+      <span>✨</span>
+      <span>{getLocalizedText(lang, business?.taglineFa, business?.taglineEn)}</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight max-w-4xl mx-auto leading-tight">
+      {getLocalizedText(lang, business?.companyNameFa, business?.companyNameEn)}
+    </h1>
+
+    <p class="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
+      {getLocalizedText(lang, business?.descriptionFa, business?.descriptionEn)}
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+      <a
+        href={business?.ctaLink || '#contact'}
+        class="px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-xl shadow-indigo-600/30 transition transform hover:-translate-y-0.5"
+      >
+        {getLocalizedText(lang, business?.ctaFa, business?.ctaEn) || (lang === 'fa' ? 'درخواست مشاوره' : 'Get Started')}
+      </a>
+      <a
+        href="#services"
+        class="px-8 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-bold text-sm border border-slate-800 hover:border-slate-700 transition"
+      >
+        {lang === 'fa' ? 'مشاهده خدمات' : 'Our Services'}
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats Grid -->
+  {business?.stats && business.stats.length > 0 && (
+    <section class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {business.stats.map((stat) => (
+          <div class="p-6 sm:p-8 rounded-3xl bg-slate-900/80 border border-slate-800 text-center space-y-2 shadow-lg">
+            <span class="text-3xl sm:text-5xl font-black text-indigo-400 font-mono tracking-tight">
+              {stat.value}
+            </span>
+            <p class="text-xs sm:text-sm font-semibold text-slate-300">
+              {getLocalizedText(lang, stat.labelFa, stat.labelEn)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Services Grid -->
+  {services.length > 0 && (
+    <section id="services" class="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+      <div class="text-center space-y-3 max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-4xl font-black text-white">
+          {lang === 'fa' ? 'خدمات تخصصی و راه‌کارهای ما' : 'Our Comprehensive Services'}
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          {lang === 'fa' 
+            ? 'ارائه خدمات مدرن مهندسی وب، طراحی و مشاوره با بالاترین استانداردهای روز دنیا.'
+            : 'Delivering end-to-end engineering, design, and strategic consulting services.'}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((service) => (
+          <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 hover:border-indigo-500/50 hover:bg-slate-900/90 transition duration-300 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center">
+                <Icon name={service.icon || 'globe'} class="w-6 h-6" />
+              </div>
+              <h3 class="text-lg font-bold text-white">
+                {getLocalizedText(lang, service.titleFa, service.titleEn)}
+              </h3>
+              <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                {getLocalizedText(lang, service.descFa, service.descEn)}
+              </p>
+            </div>
+            {service.priceFa && (
+              <div class="pt-4 border-t border-slate-800/80 text-xs font-mono text-indigo-300 font-semibold">
+                {getLocalizedText(lang, service.priceFa, service.priceEn)}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ Section -->
+  {faqs.length > 0 && (
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="text-center space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-black text-white">
+          {lang === 'fa' ? 'پرسش‌های متداول' : 'Frequently Asked Questions'}
+        </h2>
+        <p class="text-slate-400 text-sm">
+          {lang === 'fa' ? 'پاسخ به سوالات پرتکرار مشتریان و همکاران' : 'Common questions answered clearly.'}
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group p-6 rounded-2xl bg-slate-900/80 border border-slate-800 text-sm transition">
+            <summary class="font-bold text-white cursor-pointer flex items-center justify-between list-none">
+              <span>{getLocalizedText(lang, faq.questionFa, faq.questionEn)}</span>
+              <span class="text-indigo-400 text-lg group-open:rotate-180 transition-transform">↓</span>
+            </summary>
+            <p class="mt-4 text-slate-300 leading-relaxed border-t border-slate-800 pt-4">
+              {getLocalizedText(lang, faq.answerFa, faq.answerEn)}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Contact & Office Info Section -->
+  <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-indigo-950/80 via-slate-900 to-slate-950 border border-indigo-900/50 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="space-y-4 max-w-xl text-center md:text-start">
+        <h2 class="text-2xl sm:text-4xl font-black text-white">
+          {lang === 'fa' ? 'آماده شروع یک همکاری درخشان هستید؟' : 'Ready to start your next project?'}
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base">
+          {business?.addressFa && (
+            <span>📍 {getLocalizedText(lang, business.addressFa, business.addressEn)}</span>
+          )}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        {socials.email && (
+          <a
+            href={`mailto:${socials.email}`}
+            class="px-6 py-3.5 rounded-2xl bg-white text-slate-950 font-bold text-sm hover:bg-slate-100 transition shadow-xl"
+          >
+            {socials.email}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,104 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { business, products = [], socials } = siteConfig;
+---
+
+<div class="space-y-24 py-12 sm:py-20">
+  
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
+    <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-800 text-indigo-300 text-xs font-semibold">
+      🛍️ {lang === 'fa' ? 'کاتالوگ و معرفی محصولات دیجیتال' : 'Digital Product Showcase'}
+    </span>
+
+    <h1 class="text-3xl sm:text-6xl font-black text-white tracking-tight max-w-4xl mx-auto leading-tight">
+      {getLocalizedText(lang, business?.taglineFa, business?.taglineEn)}
+    </h1>
+
+    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+      {getLocalizedText(lang, business?.descriptionFa, business?.descriptionEn)}
+    </p>
+  </section>
+
+  <!-- Products Grid -->
+  {products.length > 0 && (
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {products.map((item) => (
+          <div class="rounded-3xl bg-slate-900 border border-slate-800 overflow-hidden shadow-xl hover:border-indigo-500/60 transition duration-300 flex flex-col justify-between">
+            <div class="relative">
+              <img
+                src={item.image || '/images/sample-product-1.svg'}
+                alt={item.nameFa}
+                class="w-full h-56 object-cover bg-slate-950"
+              />
+              {item.badgeFa && (
+                <span class="absolute top-4 end-4 px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold shadow-lg">
+                  {getLocalizedText(lang, item.badgeFa, item.badgeEn)}
+                </span>
+              )}
+            </div>
+
+            <div class="p-8 space-y-4 flex-1 flex flex-col justify-between">
+              <div class="space-y-2">
+                <h3 class="text-2xl font-black text-white">
+                  {getLocalizedText(lang, item.nameFa, item.nameEn)}
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  {getLocalizedText(lang, item.descFa, item.descEn)}
+                </p>
+              </div>
+
+              <div class="pt-6 border-t border-slate-800 flex items-center justify-between">
+                <span class="text-lg font-mono font-bold text-indigo-400">
+                  {getLocalizedText(lang, item.priceFa, item.priceEn)}
+                </span>
+
+                {item.link && (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition flex items-center gap-1.5"
+                  >
+                    <span>{lang === 'fa' ? 'دریافت و جزئیات' : 'Get Access'}</span>
+                    <Icon name="external-link" class="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Trust & Guarantee Banner -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="rounded-3xl p-8 sm:p-12 bg-slate-900/80 border border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div class="space-y-2">
+        <span class="text-2xl">⚡</span>
+        <h4 class="font-bold text-white text-base">{lang === 'fa' ? 'خروجی فوق‌سریع' : 'Blazing Fast'}</h4>
+        <p class="text-xs text-slate-400">{lang === 'fa' ? 'بدون وقفه و با کش ابری لبه کلودفلر' : 'Zero lag with Cloudflare edge caching'}</p>
+      </div>
+      <div class="space-y-2">
+        <span class="text-2xl">🔒</span>
+        <h4 class="font-bold text-white text-base">{lang === 'fa' ? '۱۰۰٪ رایگان و امن' : 'Free & Secure'}</h4>
+        <p class="text-xs text-slate-400">{lang === 'fa' ? 'بدون نیاز به کارت اعتباری یا سرور' : 'No credit card or hosting fees required'}</p>
+      </div>
+      <div class="space-y-2">
+        <span class="text-2xl">🛠️</span>
+        <h4 class="font-bold text-white text-base">{lang === 'fa' ? 'شخصی‌سازی نامحدود' : 'Fully Customizable'}</h4>
+        <p class="text-xs text-slate-400">{lang === 'fa' ? 'ویرایش آنلاین با پنل بدون کد' : 'Visual No-Code management via /admin'}</p>
+      </div>
+    </div>
+  </section>
+
+</div>

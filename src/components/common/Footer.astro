@@ -1,0 +1,93 @@
+---
+import { siteConfig, getLocalizedText } from '../../utils/config';
+import type { Language } from '../../types/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const socials = siteConfig.socials;
+const isBusiness = siteConfig.siteType === 'business';
+const brandName = isBusiness
+  ? getLocalizedText(lang, siteConfig.business?.companyNameFa, siteConfig.business?.companyNameEn)
+  : getLocalizedText(lang, siteConfig.profile.nameFa, siteConfig.profile.nameEn);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full bg-slate-950 border-t border-slate-900 py-12 px-4 sm:px-6 lg:px-8 mt-20">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <!-- Brand & Copyright -->
+    <div class="text-center md:text-start">
+      <div class="flex items-center justify-center md:justify-start gap-2">
+        <span class="font-bold text-white text-base">{brandName}</span>
+        <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-950/60 text-indigo-400 border border-indigo-900 font-mono">
+          FreeSite Engine
+        </span>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">
+        {lang === 'fa' 
+          ? `تمامی حقوق محفوظ است © ${currentYear}. میزبانی رایگان و فوق‌سریع روی Cloudflare Pages.`
+          : `All rights reserved © ${currentYear}. 100% Free & ultra-fast static hosting on Cloudflare Pages.`}
+      </p>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex items-center gap-3">
+      {socials.github && (
+        <a
+          href={socials.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 hover:border-slate-700 transition"
+          aria-label="GitHub"
+        >
+          <Icon name="github" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.linkedin && (
+        <a
+          href={socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-blue-400 hover:bg-slate-800 hover:border-slate-700 transition"
+          aria-label="LinkedIn"
+        >
+          <Icon name="linkedin" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.telegram && (
+        <a
+          href={socials.telegram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-sky-400 hover:bg-slate-800 hover:border-slate-700 transition"
+          aria-label="Telegram"
+        >
+          <Icon name="telegram" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.email && (
+        <a
+          href={`mailto:${socials.email}`}
+          class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:bg-slate-800 hover:border-slate-700 transition"
+          aria-label="Email"
+        >
+          <Icon name="email" class="w-4 h-4" />
+        </a>
+      )}
+      {socials.x && (
+        <a
+          href={socials.x}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 hover:border-slate-700 transition"
+          aria-label="X (Twitter)"
+        >
+          <Icon name="x" class="w-4 h-4" />
+        </a>
+      )}
+    </div>
+  </div>
+</footer>

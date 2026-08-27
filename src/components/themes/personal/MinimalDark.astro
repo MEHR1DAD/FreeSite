@@ -1,0 +1,143 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { profile, socials, skills = [], experiences = [] } = siteConfig;
+---
+
+<div class="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+  <!-- Hero / Profile Section -->
+  <section class="flex flex-col sm:flex-row items-center sm:items-start gap-8 pb-16 border-b border-slate-800">
+    <div class="relative group">
+      <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+      <img
+        src={profile.avatar || '/images/avatar.svg'}
+        alt={getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+        class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full object-cover border-2 border-slate-800 bg-slate-900 shadow-2xl"
+      />
+    </div>
+
+    <div class="flex-1 text-center sm:text-start space-y-4">
+      {profile.availabilityFa && (
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span>{getLocalizedText(lang, profile.availabilityFa, profile.availabilityEn)}</span>
+        </div>
+      )}
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+      </h1>
+
+      <p class="text-lg sm:text-xl font-medium text-indigo-400">
+        {getLocalizedText(lang, profile.titleFa, profile.titleEn)}
+      </p>
+
+      <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+        {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2">
+        {socials.email && (
+          <a
+            href={`mailto:${socials.email}`}
+            class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition shadow-lg shadow-indigo-600/30 flex items-center gap-2"
+          >
+            <Icon name="email" class="w-4 h-4" />
+            <span>{lang === 'fa' ? 'تماس با من' : 'Contact Me'}</span>
+          </a>
+        )}
+        {socials.github && (
+          <a
+            href={socials.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 font-medium text-sm border border-slate-800 hover:border-slate-700 transition flex items-center gap-2"
+          >
+            <Icon name="github" class="w-4 h-4" />
+            <span>GitHub</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  {skills.length > 0 && (
+    <section class="py-14 border-b border-slate-800">
+      <h2 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <span class="text-indigo-400">⚡</span>
+        <span>{lang === 'fa' ? 'مهارت‌ها و فناوری‌ها' : 'Skills & Technologies'}</span>
+      </h2>
+      <div class="flex flex-wrap gap-2.5">
+        {skills.map((skill) => (
+          <span class="px-4 py-2 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 hover:bg-indigo-950/20 text-slate-300 hover:text-indigo-300 text-xs sm:text-sm font-mono font-medium transition duration-200 shadow-sm">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Experiences Timeline -->
+  {experiences.length > 0 && (
+    <section class="py-14 border-b border-slate-800">
+      <h2 class="text-xl font-bold text-white mb-8 flex items-center gap-2">
+        <span class="text-indigo-400">💼</span>
+        <span>{lang === 'fa' ? 'سوابق و تجربیات کاری' : 'Work Experience'}</span>
+      </h2>
+      <div class="space-y-8 relative before:absolute before:inset-0 before:start-3.5 before:w-0.5 before:bg-slate-800">
+        {experiences.map((exp) => (
+          <div class="relative flex items-start gap-6 ps-8 group">
+            <div class="absolute start-2 top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-500 ring-4 ring-slate-950 group-hover:scale-125 transition"></div>
+            <div class="flex-1 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 hover:border-slate-700 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <h3 class="text-base sm:text-lg font-bold text-white">
+                  {getLocalizedText(lang, exp.roleFa, exp.roleEn)}
+                </h3>
+                <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-slate-800 text-indigo-300 w-fit">
+                  {getLocalizedText(lang, exp.periodFa, exp.periodEn)}
+                </span>
+              </div>
+              <p class="text-sm font-medium text-slate-400 mb-3">
+                {getLocalizedText(lang, exp.companyFa, exp.companyEn)}
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                {getLocalizedText(lang, exp.descFa, exp.descEn)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Contact Callout -->
+  <section class="mt-14 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-950 border border-indigo-900/40 text-center relative overflow-hidden">
+    <div class="absolute -top-24 -end-24 w-60 h-60 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">
+      {lang === 'fa' ? 'آماده همکاری در پروژه‌های بعدی شما' : "Let's Build Something Great Together"}
+    </h2>
+    <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-6">
+      {lang === 'fa' 
+        ? 'اگر ایده‌ای دارید یا می‌خواهید با هم صحبتی داشته باشیم، همیشه مشتاق شنیدن نظرات شما هستم.'
+        : 'Feel free to reach out for collaborations, questions, or just a friendly tech chat.'}
+    </p>
+    {socials.email && (
+      <a
+        href={`mailto:${socials.email}`}
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-xl shadow-indigo-600/30"
+      >
+        <Icon name="email" class="w-4 h-4" />
+        <span>{socials.email}</span>
+      </a>
+    )}
+  </section>
+</div>

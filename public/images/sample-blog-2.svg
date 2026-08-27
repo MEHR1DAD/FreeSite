@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blog2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" rx="16" fill="url(#blog2-grad)" />
+  <circle cx="200" cy="120" r="140" fill="#10b981" opacity="0.1" />
+  <circle cx="650" cy="300" r="160" fill="#6366f1" opacity="0.12" />
+  <rect x="100" y="100" width="600" height="250" rx="20" fill="#0f172a" fill-opacity="0.8" stroke="#10b981" stroke-width="2" />
+  <text x="400" y="210" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">Jamstack &amp; Edge Architecture</text>
+  <text x="400" y="260" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="16" fill="#6ee7b7">Build Ultra-Fast Sites with Astro &amp; Sveltia CMS</text>
+</svg>

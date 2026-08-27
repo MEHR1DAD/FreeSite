@@ -1,0 +1,223 @@
+backend:
+  name: github
+  repo: MEHR1DAD/FreeSite
+  branch: main
+  base_url: https://sveltia-cms-auth.pages.dev # Universal Cloudflare Pages OAuth proxy for GitHub
+  auth_endpoint: auth
+
+# Local development backend mode
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+display_url: "https://freesite.pages.dev"
+logo_url: "/images/logo.svg"
+
+locale: "fa"
+
+collections:
+  - name: "settings"
+    label: "تنظیمات سایت (Site Settings)"
+    delete: false
+    editor:
+      preview: true
+    files:
+      - name: "general"
+        label: "تنظیمات اصلی و هویت بصری"
+        file: "src/config/site.json"
+        format: "json"
+        fields:
+          - label: "نوع وبسایت (Site Type)"
+            name: "siteType"
+            widget: "select"
+            options:
+              - { label: "شخصی / رزومه و پورتفولیو (Personal)", value: "personal" }
+              - { label: "شرکتی / خدمات و استارتاپی (Business)", value: "business" }
+            default: "personal"
+
+          - label: "قالب و استایل بصری (Theme)"
+            name: "theme"
+            widget: "select"
+            options:
+              # تم‌های شخصی
+              - { label: "🌙 مینیمال تاریک (Minimal Dark) - شخصی", value: "minimal-dark" }
+              - { label: "☀️ مینیمال روشن (Minimal Light) - شخصی", value: "minimal-light" }
+              - { label: "🍱 بنتو گرید مدرن (Card Bento) - شخصی", value: "card-bento" }
+              - { label: "📄 رزومه و کارنامه حرفه‌ای (Resume / CV) - شخصی", value: "resume-cv" }
+              - { label: "💻 ترمینال برنامه‌نویسی و لینوکس (Terminal Tech) - شخصی", value: "terminal-tech" }
+              - { label: "🪟 شیشه مات مدرن (Glassmorphism) - شخصی", value: "glassmorphism" }
+              - { label: "⚡ نئونی سایبرپانک (Cyberpunk Neon) - شخصی", value: "cyberpunk-neon" }
+              - { label: "🌌 امواج شفق قطبی (Aurora Gradient) - شخصی", value: "aurora-gradient" }
+              - { label: "👨‍💻 پورتفولیو اختصاصی برنامه‌نویس (Developer Portfolio) - شخصی", value: "developer-portfolio" }
+              - { label: "🔗 هاب لینک و بیو (Bio Link) - شخصی", value: "bio-link" }
+              # تم‌های شرکتی
+              - { label: "🏢 شرکتی و سازمانی معتبر (Corporate) - شرکتی", value: "corporate" }
+              - { label: "💼 ارائه‌دهنده خدمات و مشاوره (Services & Consulting) - شرکتی", value: "services-consulting" }
+              - { label: "🛍️ کاتالوگ و معرفی محصول (Product Showcase) - شرکتی", value: "product-showcase" }
+              - { label: "🚀 لندینگ استارتاپی و نرم‌افزار (Startup & SaaS) - شرکتی", value: "startup-saas" }
+            default: "minimal-dark"
+
+          - label: "زبان پیش‌فرض (Default Language)"
+            name: "defaultLanguage"
+            widget: "select"
+            options:
+              - { label: "فارسی (FA) - راست‌چین", value: "fa" }
+              - { label: "English (EN) - Left-to-Right", value: "en" }
+            default: "fa"
+
+          - label: "فعال‌سازی حالت دو زبانه (Is Bilingual)"
+            name: "isBilingual"
+            widget: "boolean"
+            default: true
+
+          - label: "پروفایل و مشخصات شخصی"
+            name: "profile"
+            widget: "object"
+            fields:
+              - { label: "نام و نام خانوادگی (فارسی)", name: "nameFa", widget: "string" }
+              - { label: "Full Name (English)", name: "nameEn", widget: "string" }
+              - { label: "عنوان شغلی / تخصص (فارسی)", name: "titleFa", widget: "string" }
+              - { label: "Job Title (English)", name: "titleEn", widget: "string" }
+              - { label: "درباره من / بیوگرافی (فارسی)", name: "bioFa", widget: "text" }
+              - { label: "Bio / About Me (English)", name: "bioEn", widget: "text" }
+              - { label: "تصویر آواتار (Avatar Image)", name: "avatar", widget: "image", default: "/images/avatar.svg" }
+              - { label: "لوگو (Logo Image)", name: "logo", widget: "image", default: "/images/logo.svg" }
+              - { label: "موقعیت مکانی (فارسی)", name: "locationFa", widget: "string", required: false }
+              - { label: "Location (English)", name: "locationEn", widget: "string", required: false }
+              - { label: "وضعیت در دسترس بودن (فارسی)", name: "availabilityFa", widget: "string", required: false }
+              - { label: "Availability Status (English)", name: "availabilityEn", widget: "string", required: false }
+
+          - label: "شبکه‌های اجتماعی و راه‌های ارتباطی"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "گیت‌هاب (GitHub URL)", name: "github", widget: "string", required: false }
+              - { label: "لینکدین (LinkedIn URL)", name: "linkedin", widget: "string", required: false }
+              - { label: "اینستاگرام (Instagram URL)", name: "instagram", widget: "string", required: false }
+              - { label: "تلگرام (Telegram URL)", name: "telegram", widget: "string", required: false }
+              - { label: "آدرس ایمیل (Email)", name: "email", widget: "string", required: false }
+              - { label: "ایکس / توییتر (X / Twitter)", name: "x", widget: "string", required: false }
+              - { label: "یوتیوب (YouTube)", name: "youtube", widget: "string", required: false }
+              - { label: "شماره تماس (Phone)", name: "phone", widget: "string", required: false }
+              - { label: "آدرس وب‌سایت (Website)", name: "website", widget: "string", required: false }
+
+          - label: "مشخصات کسب‌وکار و شرکت (ویژه تم‌های شرکتی)"
+            name: "business"
+            widget: "object"
+            required: false
+            fields:
+              - { label: "نام شرکت یا برند (فارسی)", name: "companyNameFa", widget: "string", required: false }
+              - { label: "Company Name (English)", name: "companyNameEn", widget: "string", required: false }
+              - { label: "شعار برند (فارسی)", name: "taglineFa", widget: "string", required: false }
+              - { label: "Tagline (English)", name: "taglineEn", widget: "string", required: false }
+              - { label: "توضیحات معرفی شرکت (فارسی)", name: "descriptionFa", widget: "text", required: false }
+              - { label: "Company Description (English)", name: "descriptionEn", widget: "text", required: false }
+              - { label: "آدرس دفتر (فارسی)", name: "addressFa", widget: "string", required: false }
+              - { label: "Address (English)", name: "addressEn", widget: "string", required: false }
+              - { label: "متن دکمه اصلی اقدام (فارسی)", name: "ctaFa", widget: "string", required: false }
+              - { label: "CTA Button Text (English)", name: "ctaEn", widget: "string", required: false }
+              - { label: "لینک دکمه اصلی اقدام", name: "ctaLink", widget: "string", required: false }
+              - label: "آمار و ارقام برجسته"
+                name: "stats"
+                widget: "list"
+                required: false
+                fields:
+                  - { label: "عنوان آمار (فارسی)", name: "labelFa", widget: "string" }
+                  - { label: "Stat Label (English)", name: "labelEn", widget: "string" }
+                  - { label: "مقدار / عدد (مانند +۱۵۰)", name: "value", widget: "string" }
+
+          - label: "مهارت‌ها و فناوری‌ها (Skills)"
+            name: "skills"
+            widget: "list"
+            required: false
+            field: { label: "مهارت", name: "skill", widget: "string" }
+
+          - label: "سوابق کاری و تجربیات (Experiences)"
+            name: "experiences"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "سمت شغلی (فارسی)", name: "roleFa", widget: "string" }
+              - { label: "Role / Position (English)", name: "roleEn", widget: "string" }
+              - { label: "نام شرکت یا سازمان (فارسی)", name: "companyFa", widget: "string" }
+              - { label: "Company Name (English)", name: "companyEn", widget: "string" }
+              - { label: "بازه زمانی (فارسی)", name: "periodFa", widget: "string" }
+              - { label: "Time Period (English)", name: "periodEn", widget: "string" }
+              - { label: "توضیحات وظایف و دستاوردها (فارسی)", name: "descFa", widget: "text" }
+              - { label: "Description (English)", name: "descEn", widget: "text" }
+
+          - label: "خدمات و تخصص‌ها (Services)"
+            name: "services"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "شناسه یکتا (ID)", name: "id", widget: "string" }
+              - { label: "عنوان خدمت (فارسی)", name: "titleFa", widget: "string" }
+              - { label: "Service Title (English)", name: "titleEn", widget: "string" }
+              - { label: "توضیحات خدمت (فارسی)", name: "descFa", widget: "text" }
+              - { label: "Description (English)", name: "descEn", widget: "text" }
+              - { label: "آیکون (globe, palette, trending-up, layout-dashboard, etc.)", name: "icon", widget: "string", default: "globe" }
+              - { label: "قیمت پایه (فارسی)", name: "priceFa", widget: "string", required: false }
+              - { label: "Base Price (English)", name: "priceEn", widget: "string", required: false }
+
+          - label: "محصولات و پکیج‌ها (Products / Packages)"
+            name: "products"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "شناسه محصول (ID)", name: "id", widget: "string" }
+              - { label: "نام محصول (فارسی)", name: "nameFa", widget: "string" }
+              - { label: "Product Name (English)", name: "nameEn", widget: "string" }
+              - { label: "توضیحات محصول (فارسی)", name: "descFa", widget: "text" }
+              - { label: "Description (English)", name: "descEn", widget: "text" }
+              - { label: "قیمت (فارسی)", name: "priceFa", widget: "string" }
+              - { label: "Price (English)", name: "priceEn", widget: "string" }
+              - { label: "تصویر محصول", name: "image", widget: "image", default: "/images/sample-product-1.svg" }
+              - { label: "برچسب ویژه (فارسی)", name: "badgeFa", widget: "string", required: false }
+              - { label: "Badge (English)", name: "badgeEn", widget: "string", required: false }
+              - { label: "لینک خرید یا جزئیات", name: "link", widget: "string", required: false }
+
+          - label: "لینک‌های سریع / بیو (Bio Links)"
+            name: "links"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "عنوان لینک (فارسی)", name: "titleFa", widget: "string" }
+              - { label: "Link Title (English)", name: "titleEn", widget: "string" }
+              - { label: "آدرس اینترنتی (URL)", name: "url", widget: "string" }
+              - { label: "آیکون", name: "icon", widget: "string", default: "link" }
+              - { label: "برجسته‌سازی دکمه (Highlight)", name: "highlight", widget: "boolean", default: false }
+
+          - label: "پرسش‌های متداول (FAQs)"
+            name: "faqs"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "پرسش (فارسی)", name: "questionFa", widget: "string" }
+              - { label: "Question (English)", name: "questionEn", widget: "string" }
+              - { label: "پاسخ (فارسی)", name: "answerFa", widget: "text" }
+              - { label: "Answer (English)", name: "answerEn", widget: "text" }
+
+  - name: "blog"
+    label: "مقالات و وبلاگ (Blog Posts)"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "عنوان مقاله", name: "title", widget: "string" }
+      - { label: "خلاصه کوتاه برای سئو", name: "description", widget: "text" }
+      - { label: "تاریخ انتشار", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "تاریخ به‌روزرسانی", name: "updatedDate", widget: "datetime", format: "YYYY-MM-DD", required: false }
+      - { label: "تصویر شاخص", name: "coverImage", widget: "image", default: "/images/sample-blog-1.svg" }
+      - { label: "برچسب‌ها (Tags)", name: "tags", widget: "list", default: ["آموزش", "تکنولوژی"] }
+      - { label: "نام نویسنده", name: "author", widget: "string", default: "مهرداد رضایی" }
+      - { label: "پیش‌نویس (عدم نمایش عمومی)", name: "draft", widget: "boolean", default: false }
+      - label: "زبان مقاله"
+        name: "language"
+        widget: "select"
+        options:
+          - { label: "فارسی (FA)", value: "fa" }
+          - { label: "English (EN)", value: "en" }
+        default: "fa"
+      - { label: "متن کامل مقاله (Markdown)", name: "body", widget: "markdown" }

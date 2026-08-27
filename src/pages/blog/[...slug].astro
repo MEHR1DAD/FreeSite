@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatLocalDate } from '../../utils/config';
+import type { Language } from '../../types/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const postLang: Language = post.data.language || 'fa';
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.coverImage}
+  lang={postLang}
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-10">
+    
+    <!-- Back to blog link -->
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-2 text-xs font-mono font-semibold text-indigo-400 hover:text-indigo-300 transition"
+    >
+      <span>←</span>
+      <span>{postLang === 'fa' ? 'بازگشت به همه مقالات' : 'Back to all articles'}</span>
+    </a>
+
+    <!-- Header Section -->
+    <header class="space-y-6">
+      <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {formatLocalDate(post.data.pubDate, postLang)}
+        </time>
+        <span>•</span>
+        <span>{post.data.author}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-slate-300 leading-relaxed font-medium">
+        {post.data.description}
+      </p>
+
+      <div class="flex flex-wrap gap-2 pt-2">
+        {post.data.tags.map((tag) => (
+          <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-indigo-300 text-xs font-mono">
+            #{tag}
+          </span>
+        ))}
+      </div>
+
+      {post.data.coverImage && (
+        <div class="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl aspect-video bg-slate-900">
+          <img
+            src={post.data.coverImage}
+            alt={post.data.title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )}
+    </header>
+
+    <!-- Markdown Post Body -->
+    <div class="prose prose-invert prose-indigo max-w-none prose-headings:font-black prose-a:text-indigo-400 prose-pre:border prose-pre:border-slate-800 prose-pre:bg-slate-900/90 pt-6">
+      <Content />
+    </div>
+
+    <!-- Article Footer -->
+    <footer class="pt-10 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-slate-500 font-mono">
+        FreeSite Open Blog Engine
+      </div>
+      <a
+        href="/blog"
+        class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold border border-slate-800 transition"
+      >
+        {postLang === 'fa' ? 'مشاهده سایر مقالات' : 'Read more articles'}
+      </a>
+    </footer>
+
+  </article>
+</BaseLayout>

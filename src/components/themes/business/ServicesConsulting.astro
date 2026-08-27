@@ -1,0 +1,135 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { business, services = [], experiences = [], socials, profile } = siteConfig;
+---
+
+<div class="space-y-24 py-12 sm:py-20">
+  
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-800/60 text-emerald-400 text-xs font-semibold">
+      <span>💼</span>
+      <span>{lang === 'fa' ? 'مشاوره تخصصی و تحول دیجیتال' : 'Strategic Advisory & Consulting'}</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-6xl font-black text-white tracking-tight max-w-4xl mx-auto leading-tight">
+      {getLocalizedText(lang, business?.taglineFa, business?.taglineEn)}
+    </h1>
+
+    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+      {getLocalizedText(lang, business?.descriptionFa, business?.descriptionEn)}
+    </p>
+
+    <div class="pt-4 flex justify-center">
+      <a
+        href="#booking"
+        class="px-8 py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base shadow-xl shadow-emerald-600/30 transition transform hover:-translate-y-0.5"
+      >
+        {lang === 'fa' ? 'رزرو جلسه مشاوره اختصاصی' : 'Schedule Strategy Session'}
+      </a>
+    </div>
+  </section>
+
+  <!-- Consultant / Team Profile Spotlight -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="rounded-3xl p-8 sm:p-10 bg-slate-900/90 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-center gap-8">
+      <img
+        src={profile.avatar || '/images/avatar.svg'}
+        alt={getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+        class="w-32 h-32 rounded-2xl object-cover border-2 border-emerald-500/40 shadow-lg"
+      />
+      <div class="space-y-3 text-center sm:text-start">
+        <h2 class="text-2xl font-bold text-white">
+          {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+        </h2>
+        <p class="text-sm font-semibold text-emerald-400">
+          {getLocalizedText(lang, profile.titleFa, profile.titleEn)}
+        </p>
+        <p class="text-sm text-slate-300 leading-relaxed">
+          {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Packages Grid -->
+  {services.length > 0 && (
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
+      <div class="text-center space-y-2">
+        <h2 class="text-2xl sm:text-4xl font-black text-white">
+          {lang === 'fa' ? 'پکیج‌ها و خدمات مشاوره' : 'Consulting Packages & Retainers'}
+        </h2>
+        <p class="text-slate-400 text-sm">
+          {lang === 'fa' ? 'پلن‌های متناسب با نیاز کسب‌وکار شما' : 'Flexible plans tailored to your growth.'}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {services.map((svc) => (
+          <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-6 flex flex-col justify-between hover:border-emerald-500/50 transition">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center">
+                  <Icon name={svc.icon || 'globe'} class="w-6 h-6" />
+                </div>
+                {svc.priceFa && (
+                  <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-800/60">
+                    {getLocalizedText(lang, svc.priceFa, svc.priceEn)}
+                  </span>
+                )}
+              </div>
+
+              <h3 class="text-xl font-bold text-white">
+                {getLocalizedText(lang, svc.titleFa, svc.titleEn)}
+              </h3>
+
+              <p class="text-slate-300 text-sm leading-relaxed">
+                {getLocalizedText(lang, svc.descFa, svc.descEn)}
+              </p>
+            </div>
+
+            <a
+              href="#booking"
+              class="w-full py-3 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white text-xs font-bold text-center transition"
+            >
+              {lang === 'fa' ? 'انتخاب این پلن' : 'Select Plan'}
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Booking / Contact Card -->
+  <section id="booking" class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-emerald-950/60 via-slate-900 to-slate-950 border border-emerald-800/50 text-center space-y-6">
+      <h2 class="text-2xl sm:text-4xl font-black text-white">
+        {lang === 'fa' ? 'درخواست جلسه کاری و همکاری' : 'Schedule a Strategy Session'}
+      </h2>
+      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+        {lang === 'fa' 
+          ? 'جهت هماهنگی زمان جلسه و دریافت اطلاعات بیشتر از طریق ایمیل یا تلگرام در ارتباط باشید.'
+          : 'Reach out via email or direct message to arrange a consultation call.'}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+        {socials.email && (
+          <a
+            href={`mailto:${socials.email}`}
+            class="px-8 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl transition"
+          >
+            {socials.email}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+</div>

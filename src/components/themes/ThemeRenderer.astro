@@ -1,0 +1,44 @@
+---
+import type { ThemeName, Language } from '../../types/site';
+
+// Personal Themes
+import MinimalDark from './personal/MinimalDark.astro';
+import MinimalLight from './personal/MinimalLight.astro';
+import CardBento from './personal/CardBento.astro';
+import ResumeCv from './personal/ResumeCv.astro';
+import TerminalTech from './personal/TerminalTech.astro';
+import Glassmorphism from './personal/Glassmorphism.astro';
+import CyberpunkNeon from './personal/CyberpunkNeon.astro';
+import AuroraGradient from './personal/AuroraGradient.astro';
+import DeveloperPortfolio from './personal/DeveloperPortfolio.astro';
+import BioLink from './personal/BioLink.astro';
+
+// Business Themes
+import Corporate from './business/Corporate.astro';
+import ServicesConsulting from './business/ServicesConsulting.astro';
+import ProductShowcase from './business/ProductShowcase.astro';
+import StartupSaas from './business/StartupSaas.astro';
+
+interface Props {
+  theme: ThemeName;
+  lang: Language;
+}
+
+const { theme, lang } = Astro.props;
+---
+
+{theme === 'minimal-dark' && <MinimalDark lang={lang} />}
+{theme === 'minimal-light' && <MinimalLight lang={lang} />}
+{theme === 'card-bento' && <CardBento lang={lang} />}
+{theme === 'resume-cv' && <ResumeCv lang={lang} />}
+{theme === 'terminal-tech' && <TerminalTech lang={lang} />}
+{theme === 'glassmorphism' && <Glassmorphism lang={lang} />}
+{theme === 'cyberpunk-neon' && <CyberpunkNeon lang={lang} />}
+{theme === 'aurora-gradient' && <AuroraGradient lang={lang} />}
+{theme === 'developer-portfolio' && <DeveloperPortfolio lang={lang} />}
+{theme === 'bio-link' && <BioLink lang={lang} />}
+
+{theme === 'corporate' && <Corporate lang={lang} />}
+{theme === 'services-consulting' && <ServicesConsulting lang={lang} />}
+{theme === 'product-showcase' && <ProductShowcase lang={lang} />}
+{theme === 'startup-saas' && <StartupSaas lang={lang} />}

@@ -1,0 +1,54 @@
+---
+import type { Language } from '../../types/site';
+
+interface Props {
+  currentLang: Language;
+}
+
+const { currentLang } = Astro.props;
+---
+
+<div class="inline-flex items-center p-1 rounded-full bg-slate-800/80 border border-slate-700/60 backdrop-blur-md shadow-inner">
+  <a
+    href="?lang=fa"
+    id="lang-btn-fa"
+    class={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
+      currentLang === 'fa'
+        ? 'bg-indigo-600 text-white shadow-sm'
+        : 'text-slate-400 hover:text-slate-200'
+    }`}
+  >
+    فا
+  </a>
+  <a
+    href="?lang=en"
+    id="lang-btn-en"
+    class={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
+      currentLang === 'en'
+        ? 'bg-indigo-600 text-white shadow-sm'
+        : 'text-slate-400 hover:text-slate-200'
+    }`}
+  >
+    EN
+  </a>
+</div>
+
+<script>
+  // Handle client-side instant language switch
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang');
+    if (lang === 'fa' || lang === 'en') {
+      localStorage.setItem('freesite_lang', lang);
+    } else {
+      const savedLang = localStorage.getItem('freesite_lang');
+      if (savedLang && (savedLang === 'fa' || savedLang === 'en')) {
+        const currentUrl = new URL(window.location.href);
+        if (!currentUrl.searchParams.has('lang')) {
+          currentUrl.searchParams.set('lang', savedLang);
+          window.location.replace(currentUrl.toString());
+        }
+      }
+    }
+  });
+</script>

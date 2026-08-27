@@ -1,0 +1,128 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { profile, socials, skills = [], experiences = [] } = siteConfig;
+---
+
+<div class="min-h-screen py-16 sm:py-24 relative overflow-hidden bg-slate-950">
+  <!-- Aurora Gradient Background Mesh -->
+  <div class="absolute -top-40 -start-40 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/20 via-blue-600/20 to-purple-600/20 rounded-full blur-[100px] pointer-events-none animate-pulse-slow"></div>
+  <div class="absolute top-1/2 -end-40 w-[600px] h-[600px] bg-gradient-to-br from-indigo-500/20 via-purple-600/20 to-pink-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+    
+    <!-- Hero Section -->
+    <div class="rounded-3xl p-8 sm:p-12 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 shadow-2xl space-y-6">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+        <img
+          src={profile.avatar || '/images/avatar.svg'}
+          alt={getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+          class="w-32 h-32 rounded-3xl object-cover border-2 border-indigo-400/40 shadow-xl"
+        />
+
+        <div class="flex-1 text-center sm:text-start space-y-3">
+          <span class="inline-block text-xs font-mono font-semibold px-3 py-1 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300 border border-cyan-500/30">
+            🌌 {getLocalizedText(lang, profile.locationFa, profile.locationEn) || 'Global / Remote'}
+          </span>
+
+          <h1 class="text-3xl sm:text-5xl font-black text-white">
+            {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+          </h1>
+
+          <p class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-sky-300 to-indigo-300">
+            {getLocalizedText(lang, profile.titleFa, profile.titleEn)}
+          </p>
+
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+          </p>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-4 border-t border-slate-800">
+        {socials.email && (
+          <a
+            href={`mailto:${socials.email}`}
+            class="px-6 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-90 text-white font-semibold text-sm shadow-lg transition"
+          >
+            {lang === 'fa' ? 'ارسال پیام به من' : 'Send a Message'}
+          </a>
+        )}
+        {socials.github && (
+          <a
+            href={socials.github}
+            target="_blank"
+            class="p-2.5 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition"
+          >
+            <Icon name="github" class="w-4 h-4" />
+          </a>
+        )}
+        {socials.telegram && (
+          <a
+            href={socials.telegram}
+            target="_blank"
+            class="p-2.5 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition"
+          >
+            <Icon name="telegram" class="w-4 h-4" />
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- Skills Palette -->
+    {skills.length > 0 && (
+      <div class="rounded-3xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 space-y-6">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span class="text-cyan-400">🌌</span>
+          <span>{lang === 'fa' ? 'مهارت‌ها و پشته تخصصی' : 'Skills & Technologies'}</span>
+        </h2>
+        <div class="flex flex-wrap gap-2.5">
+          {skills.map((skill) => (
+            <span class="px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700/80 text-slate-200 text-xs sm:text-sm font-medium hover:border-cyan-400/60 transition">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Experiences -->
+    {experiences.length > 0 && (
+      <div class="rounded-3xl p-8 bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 space-y-6">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span class="text-purple-400">💼</span>
+          <span>{lang === 'fa' ? 'سوابق و تجربیات حرفه‌ای' : 'Career Journey'}</span>
+        </h2>
+        <div class="space-y-6">
+          {experiences.map((exp) => (
+            <div class="p-6 rounded-2xl bg-slate-950/50 border border-slate-800/80 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <h3 class="text-base font-bold text-white">
+                  {getLocalizedText(lang, exp.roleFa, exp.roleEn)}
+                </h3>
+                <span class="text-xs font-mono text-cyan-300">
+                  {getLocalizedText(lang, exp.periodFa, exp.periodEn)}
+                </span>
+              </div>
+              <p class="text-xs font-semibold text-indigo-300">
+                {getLocalizedText(lang, exp.companyFa, exp.companyEn)}
+              </p>
+              <p class="text-sm text-slate-300 leading-relaxed pt-1">
+                {getLocalizedText(lang, exp.descFa, exp.descEn)}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
+</div>

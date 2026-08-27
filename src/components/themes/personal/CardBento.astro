@@ -1,0 +1,180 @@
+---
+import { siteConfig, getLocalizedText } from '../../../utils/config';
+import type { Language } from '../../../types/site';
+import Icon from '../../common/Icon.astro';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const { profile, socials, skills = [], experiences = [] } = siteConfig;
+const latestExp = experiences[0];
+---
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[minmax(180px,auto)]">
+    
+    <!-- 1. Hero / Profile Card (2 cols, 2 rows) -->
+    <div class="md:col-span-2 lg:col-span-2 row-span-2 rounded-3xl p-8 bg-gradient-to-br from-indigo-950/70 via-slate-900 to-slate-900 border border-indigo-900/40 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+      <div class="absolute -end-12 -bottom-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl group-hover:scale-150 transition duration-700"></div>
+      
+      <div>
+        <div class="flex items-center gap-4 mb-6">
+          <img
+            src={profile.avatar || '/images/avatar.svg'}
+            alt={getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+            class="w-20 h-20 rounded-2xl object-cover border-2 border-indigo-500/30 shadow-lg"
+          />
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-black text-white">
+              {getLocalizedText(lang, profile.nameFa, profile.nameEn)}
+            </h1>
+            <p class="text-indigo-400 font-medium text-sm mt-0.5">
+              {getLocalizedText(lang, profile.titleFa, profile.titleEn)}
+            </p>
+          </div>
+        </div>
+
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          {getLocalizedText(lang, profile.bioFa, profile.bioEn)}
+        </p>
+      </div>
+
+      <div class="pt-6 flex flex-wrap items-center gap-3">
+        {socials.email && (
+          <a
+            href={`mailto:${socials.email}`}
+            class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition shadow-lg shadow-indigo-600/30 flex items-center gap-2"
+          >
+            <Icon name="email" class="w-4 h-4" />
+            <span>{lang === 'fa' ? 'ارتباط مستقیم' : 'Contact Me'}</span>
+          </a>
+        )}
+      </div>
+    </div>
+
+    <!-- 2. Status & Location Card -->
+    <div class="rounded-3xl p-6 bg-slate-900/80 border border-slate-800 flex flex-col justify-between shadow-lg">
+      <div class="space-y-2">
+        <span class="text-xs font-mono uppercase tracking-wider text-slate-500">
+          {lang === 'fa' ? 'وضعیت کاری' : 'Current Status'}
+        </span>
+        <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>{getLocalizedText(lang, profile.availabilityFa, profile.availabilityEn) || 'Available'}</span>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-slate-800">
+        <span class="text-xs text-slate-500">{lang === 'fa' ? 'محل سکونت' : 'Location'}</span>
+        <p class="text-sm font-semibold text-slate-200 mt-0.5">
+          📍 {getLocalizedText(lang, profile.locationFa, profile.locationEn) || 'Iran'}
+        </p>
+      </div>
+    </div>
+
+    <!-- 3. Socials Hub Card -->
+    <div class="rounded-3xl p-6 bg-slate-900/80 border border-slate-800 shadow-lg flex flex-col justify-between">
+      <span class="text-xs font-mono uppercase tracking-wider text-slate-500">
+        {lang === 'fa' ? 'شبکه‌های اجتماعی' : 'Connect'}
+      </span>
+      <div class="grid grid-cols-2 gap-2 my-2">
+        {socials.github && (
+          <a
+            href={socials.github}
+            target="_blank"
+            class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-medium transition"
+          >
+            <Icon name="github" class="w-4 h-4" />
+            <span>GitHub</span>
+          </a>
+        )}
+        {socials.linkedin && (
+          <a
+            href={socials.linkedin}
+            target="_blank"
+            class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-medium transition"
+          >
+            <Icon name="linkedin" class="w-4 h-4" />
+            <span>LinkedIn</span>
+          </a>
+        )}
+        {socials.telegram && (
+          <a
+            href={socials.telegram}
+            target="_blank"
+            class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-medium transition"
+          >
+            <Icon name="telegram" class="w-4 h-4" />
+            <span>Telegram</span>
+          </a>
+        )}
+        {socials.x && (
+          <a
+            href={socials.x}
+            target="_blank"
+            class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs font-medium transition"
+          >
+            <Icon name="x" class="w-4 h-4" />
+            <span>X / Twitter</span>
+          </a>
+        )}
+      </div>
+      <p class="text-xs text-slate-500">@{socials.github ? socials.github.split('/').pop() : 'freesite'}</p>
+    </div>
+
+    <!-- 4. Tech Stack Card (2 cols) -->
+    {skills.length > 0 && (
+      <div class="md:col-span-2 lg:col-span-2 rounded-3xl p-6 bg-slate-900/80 border border-slate-800 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-mono uppercase tracking-wider text-slate-400 font-bold">
+              🛠️ {lang === 'fa' ? 'مهارت‌ها و فناوری‌ها' : 'Tech Stack'}
+            </h3>
+            <span class="text-xs text-indigo-400 font-mono">+{skills.length} skills</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {skills.map((skill) => (
+              <span class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono font-medium hover:border-indigo-500 transition">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- 5. Latest Experience Card (2 cols) -->
+    {latestExp && (
+      <div class="md:col-span-2 lg:col-span-2 rounded-3xl p-6 bg-slate-900/80 border border-slate-800 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-mono uppercase tracking-wider text-indigo-400 font-bold">
+              💼 {lang === 'fa' ? 'آخرین موقعیت شغلی' : 'Current / Latest Role'}
+            </span>
+            <span class="text-xs font-mono text-slate-500">
+              {getLocalizedText(lang, latestExp.periodFa, latestExp.periodEn)}
+            </span>
+          </div>
+          <h4 class="text-base font-bold text-white">
+            {getLocalizedText(lang, latestExp.roleFa, latestExp.roleEn)}
+          </h4>
+          <p class="text-xs text-slate-400 mt-0.5">
+            {getLocalizedText(lang, latestExp.companyFa, latestExp.companyEn)}
+          </p>
+          <p class="text-xs text-slate-300 mt-2 line-clamp-2 leading-relaxed">
+            {getLocalizedText(lang, latestExp.descFa, latestExp.descEn)}
+          </p>
+        </div>
+        <div class="pt-3 border-t border-slate-800 flex justify-end">
+          <a href="/blog" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+            <span>{lang === 'fa' ? 'مشاهده مقالات من' : 'Read my blog'}</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    )}
+
+  </div>
+</div>
