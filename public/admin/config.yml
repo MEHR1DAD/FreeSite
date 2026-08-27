@@ -2,8 +2,8 @@ backend:
   name: github
   repo: MEHR1DAD/FreeSite
   branch: main
-  base_url: https://sveltia-cms-auth.pages.dev # Universal Cloudflare Pages OAuth proxy for GitHub
-  auth_endpoint: auth
+  auth_type: implicit
+  app_id: Ov23liRTevyISmSsOo01 # شناسه Client ID دریافتی را اینجا قرار دهید
 
 # Local development backend mode
 local_backend: true
