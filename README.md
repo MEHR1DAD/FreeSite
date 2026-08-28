@@ -3,12 +3,8 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://github.com/MEHR1DAD/FreeSite/fork">
-    <img src="https://img.shields.io/badge/1._Fork_Repo-GitHub-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Fork on GitHub" height="38" />
-  </a>
-  &nbsp;&nbsp;
   <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
-    <img src="https://img.shields.io/badge/2._Deploy_to-Cloudflare_Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Deploy to Cloudflare Pages" height="38" />
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="42" />
   </a>
 </p>
 
@@ -69,28 +65,20 @@
 
 ---
 
-## 🚀 راهنمای استقرار در Cloudflare Pages (Deploy to Cloudflare Pages)
+## 🚀 استقرار با یک کلیک (Deploy to Cloudflare Pages)
 
-استقرار وب‌سایت استاتیک FreeSite روی هاستینگ رایگان و فوق‌سریع **Cloudflare Pages** در ۲ گام ساده انجام می‌شود:
+برای استقرار و فعال‌سازی فوری وب‌سایت خود روی Cloudflare Pages، روی دکمه زیر کلیک کنید:
 
-### 🟢 گام اول: فورک کردن مخزن در حساب گیت‌هاب شما
-ابتدا با کلیک روی لینک زیر، یک کپی از مخزن مرجع در حساب گیت‌هاب خود ایجاد فرمایید:
+<p align="center">
+  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="42" />
+  </a>
+</p>
 
-👉 **[فورک کردن ریپازیتوری در GitHub](https://github.com/MEHR1DAD/FreeSite/fork)**
-
----
-
-### 🟠 گام دوم: اتصال و استقرار در Cloudflare Pages
-وارد بخش ساخت پروژه Pages در داشبورد کلودفلر شوید:
-
-👉 **[ورود به بخش ساخت پروژه در Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)**
-
-1. مخزن فورک‌شده (`FreeSite`) را از لیست ریپازیتوری‌های گیت‌هاب خود انتخاب نمایید.
-2. در بخش تنظیمات بیلد (**Build settings**):
-   - **Framework preset**: گزینه **`Astro`** را انتخاب کنید (دستور `npm run build` و پوشه `dist` خودکار تکمیل می‌شوند).
-3. دکمه **Save and Deploy** را بزنید.
-
-🎉 ظرف ۱ دقیقه، وب‌سایت شما بر روی دامنه اختصاصی `https://your-project.pages.dev` فعال و با هر تغییر در گیت‌هاب به صورت خودکار به‌روزرسانی خواهد شد!
+### ⚡ مراحل راه‌اندازی:
+1. در داشبورد کلودفلر، ریپازیتوری **FreeSite** را انتخاب نمایید.
+2. در بخش **Framework preset** گزینه **`Astro`** را انتخاب کرده و روی **Save and Deploy** کلیک فرمایید.
+3. وب‌سایت شما ظرف ۱ دقیقه بر روی دامنه اختصاصی `https://your-project.pages.dev` آنلاین و فعال خواهد بود! 🚀
 
 ---
 
