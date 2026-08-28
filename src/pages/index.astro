@@ -1,32 +1,126 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ThemeRenderer from '../components/themes/ThemeRenderer.astro';
-import { siteConfig } from '../utils/config';
+import { siteConfig, THEME_NAMES } from '../utils/config';
 import type { ThemeName, Language } from '../types/site';
 
-const activeTheme: ThemeName = siteConfig.theme;
+// Personal Themes
+import MinimalDark from '../components/themes/personal/MinimalDark.astro';
+import MinimalLight from '../components/themes/personal/MinimalLight.astro';
+import CardBento from '../components/themes/personal/CardBento.astro';
+import ResumeCv from '../components/themes/personal/ResumeCv.astro';
+import TerminalTech from '../components/themes/personal/TerminalTech.astro';
+import Glassmorphism from '../components/themes/personal/Glassmorphism.astro';
+import CyberpunkNeon from '../components/themes/personal/CyberpunkNeon.astro';
+import AuroraGradient from '../components/themes/personal/AuroraGradient.astro';
+import DeveloperPortfolio from '../components/themes/personal/DeveloperPortfolio.astro';
+import BioLink from '../components/themes/personal/BioLink.astro';
+
+// Business Themes
+import Corporate from '../components/themes/business/Corporate.astro';
+import ServicesConsulting from '../components/themes/business/ServicesConsulting.astro';
+import ProductShowcase from '../components/themes/business/ProductShowcase.astro';
+import StartupSaas from '../components/themes/business/StartupSaas.astro';
+
+const defaultTheme: ThemeName = siteConfig.theme;
 const activeLang: Language = siteConfig.defaultLanguage;
-const isBioLink = activeTheme === 'bio-link';
 ---
 
-<BaseLayout
-  activeTheme={activeTheme}
-  lang={activeLang}
-  hideNavbar={isBioLink}
-  hideFooter={isBioLink}
->
-  <ThemeRenderer theme={activeTheme} lang={activeLang} />
+<BaseLayout activeTheme={defaultTheme} lang={activeLang}>
+  <div id="all-themes-container" data-default-theme={defaultTheme}>
+    <!-- Personal Themes -->
+    <div id="theme-view-minimal-dark" class="theme-view" style={defaultTheme === 'minimal-dark' ? '' : 'display: none;'}>
+      <MinimalDark lang={activeLang} />
+    </div>
+    <div id="theme-view-minimal-light" class="theme-view" style={defaultTheme === 'minimal-light' ? '' : 'display: none;'}>
+      <MinimalLight lang={activeLang} />
+    </div>
+    <div id="theme-view-card-bento" class="theme-view" style={defaultTheme === 'card-bento' ? '' : 'display: none;'}>
+      <CardBento lang={activeLang} />
+    </div>
+    <div id="theme-view-resume-cv" class="theme-view" style={defaultTheme === 'resume-cv' ? '' : 'display: none;'}>
+      <ResumeCv lang={activeLang} />
+    </div>
+    <div id="theme-view-terminal-tech" class="theme-view" style={defaultTheme === 'terminal-tech' ? '' : 'display: none;'}>
+      <TerminalTech lang={activeLang} />
+    </div>
+    <div id="theme-view-glassmorphism" class="theme-view" style={defaultTheme === 'glassmorphism' ? '' : 'display: none;'}>
+      <Glassmorphism lang={activeLang} />
+    </div>
+    <div id="theme-view-cyberpunk-neon" class="theme-view" style={defaultTheme === 'cyberpunk-neon' ? '' : 'display: none;'}>
+      <CyberpunkNeon lang={activeLang} />
+    </div>
+    <div id="theme-view-aurora-gradient" class="theme-view" style={defaultTheme === 'aurora-gradient' ? '' : 'display: none;'}>
+      <AuroraGradient lang={activeLang} />
+    </div>
+    <div id="theme-view-developer-portfolio" class="theme-view" style={defaultTheme === 'developer-portfolio' ? '' : 'display: none;'}>
+      <DeveloperPortfolio lang={activeLang} />
+    </div>
+    <div id="theme-view-bio-link" class="theme-view" style={defaultTheme === 'bio-link' ? '' : 'display: none;'}>
+      <BioLink lang={activeLang} />
+    </div>
+
+    <!-- Business Themes -->
+    <div id="theme-view-corporate" class="theme-view" style={defaultTheme === 'corporate' ? '' : 'display: none;'}>
+      <Corporate lang={activeLang} />
+    </div>
+    <div id="theme-view-services-consulting" class="theme-view" style={defaultTheme === 'services-consulting' ? '' : 'display: none;'}>
+      <ServicesConsulting lang={activeLang} />
+    </div>
+    <div id="theme-view-product-showcase" class="theme-view" style={defaultTheme === 'product-showcase' ? '' : 'display: none;'}>
+      <ProductShowcase lang={activeLang} />
+    </div>
+    <div id="theme-view-startup-saas" class="theme-view" style={defaultTheme === 'startup-saas' ? '' : 'display: none;'}>
+      <StartupSaas lang={activeLang} />
+    </div>
+  </div>
 </BaseLayout>
 
 <script is:inline>
-  // Instant redirect if visiting with query param ?theme=... in SSG mode
+  // Instant client-side theme switching on the home page
   (function () {
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const theme = urlParams.get('theme');
-      if (theme) {
-        window.location.replace('/preview/' + encodeURIComponent(theme) + window.location.search);
-      }
-    } catch (e) {}
+    function applyThemeFromUrlOrStorage() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        let theme = urlParams.get('theme') || localStorage.getItem('freesite_preview_theme');
+        
+        const container = document.getElementById('all-themes-container');
+        if (!container) return;
+        
+        const defaultTheme = container.getAttribute('data-default-theme');
+        if (!theme) theme = defaultTheme;
+
+        const targetEl = document.getElementById('theme-view-' + theme);
+        if (targetEl) {
+          document.querySelectorAll('.theme-view').forEach(function (el) {
+            el.style.display = 'none';
+          });
+          targetEl.style.display = '';
+
+          // Update active badges in switcher
+          document.querySelectorAll('.theme-option-link').forEach(function (btn) {
+            const btnTheme = btn.getAttribute('data-theme');
+            const activeBadge = btn.querySelector('.theme-active-badge');
+            if (btnTheme === theme) {
+              btn.classList.add('bg-indigo-600/20', 'border-indigo-500', 'text-indigo-200');
+              if (activeBadge) activeBadge.style.display = '';
+            } else {
+              btn.classList.remove('bg-indigo-600/20', 'border-indigo-500', 'text-indigo-200');
+              if (activeBadge) activeBadge.style.display = 'none';
+            }
+          });
+
+          // Update floating button label
+          const labelEl = document.getElementById('current-theme-label');
+          const themeName = targetEl.getAttribute('data-theme-name');
+          if (labelEl && themeName) {
+            labelEl.textContent = themeName;
+          }
+        }
+      } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', applyThemeFromUrlOrStorage);
+    window.addEventListener('popstate', applyThemeFromUrlOrStorage);
+    applyThemeFromUrlOrStorage();
   })();
 </script>
