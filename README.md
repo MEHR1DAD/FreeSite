@@ -3,8 +3,8 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
-    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="40" />
+  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare" height="40" />
   </a>
 </p>
 
@@ -65,23 +65,15 @@
 
 ---
 
-## 🚀 راهنمای استقرار در Cloudflare Pages (Deploy to Cloudflare Pages)
+## 🚀 استقرار کاملاً خودکار و ۱-کلیکه (1-Click Auto Deploy)
 
-برای استقرار رایگان و اتصال وبسایت خود به کلودفلر، روی دکمه زیر کلیک کنید:
+روی دکمه رسمی زیر کلیک کنید تا کلودفلر **به صورت خودکار مخزن را در حساب گیت‌هاب شما کپی کرده** و پروژه را بدون نیاز به هیچ تنظیم دستی مستقر نماید:
 
-[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite)
 
-### 📋 ۳ گام ساده برای راه‌اندازی (Setup Steps):
-1. در داشبورد کلودفلر، ریپازیتوری **FreeSite** خود را انتخاب نمایید.
-2. در بخش تنظیمات بیلد (**Build settings**)، تنها کافیست در منوی کشویی **Framework preset** گزینه **`Astro`** را انتخاب کنید:
-
-| نام فیلد (Setting) | مقدار مورد نیاز (Value) | توضیحات |
-| :--- | :--- | :--- |
-| **Framework preset** | **`Astro`** | با انتخاب این گزینه، فیلدهای دستور بیلد و پوشه خروجی خودکار پر می‌شوند |
-| **Build command** | `npm run build` | دستور اجرای بیلد استاتیک پروژه |
-| **Build output directory** | `dist` | پوشه حاوی فایل‌های کامپایل‌شده وبسایت |
-
-3. بر روی دکمه **Save and Deploy** کلیک فرمایید. ظرف کمتر از ۱ دقیقه وب‌سایت شما بر روی دامنه اختصاصی و امن `https://your-project.pages.dev` آنلاین و فعال خواهد بود! 🚀
+### 📋 فرآیند استقرار خودکار:
+1. با کلیک روی دکمه بالا و اتصال به اکانت گیت‌هاب، مخزن به طور خودکار به حساب شما فورک/کپی می‌شود.
+2. کلودفلر بر اساس فایل `wrangler.json`، دستور بیلد (`npm run build`) و پوشه خروجی (`dist`) را به صورت خودکار اجرا کرده و وب‌سایت شما ظرف ۱ دقیقه آنلاین و فعال می‌گردد! 🚀
 
 ---
 
