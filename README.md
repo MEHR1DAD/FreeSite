@@ -3,8 +3,12 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
-    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="42" />
+  <a href="https://github.com/MEHR1DAD/FreeSite/fork">
+    <img src="https://img.shields.io/badge/1._Fork_Repo-GitHub-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Fork on GitHub" height="38" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
+    <img src="https://img.shields.io/badge/2._Deploy_to-Cloudflare_Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Deploy to Cloudflare Pages" height="38" />
   </a>
 </p>
 
@@ -65,16 +69,28 @@
 
 ---
 
-## 🚀 استقرار با ۱ کلیک (1-Click Auto Deploy to Cloudflare Pages)
+## 🚀 راهنمای استقرار در Cloudflare Pages (Deploy to Cloudflare Pages)
 
-تنها با یک کلیک روی دکمه زیر، مخزن به صورت خودکار در حساب گیت‌هاب شما فورک شده و بلافاصله فرآیند بیلد و استقرار در Cloudflare Pages آغاز می‌گردد:
+استقرار وب‌سایت استاتیک FreeSite روی هاستینگ رایگان و فوق‌سریع **Cloudflare Pages** در ۲ گام ساده انجام می‌شود:
 
-[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite)
+### 🟢 گام اول: فورک کردن مخزن در حساب گیت‌هاب شما
+ابتدا با کلیک روی لینک زیر، یک کپی از مخزن مرجع در حساب گیت‌هاب خود ایجاد فرمایید:
 
-### 🌟 ویژگی‌های فرآیند استقرار ۱-کلیکه:
-- 🔄 **فورک خودکار آخرین نسخه**: بدون نیاز به ساخت دستی مخزن یا پر کردن فرم‌های گیت‌هاب؛ آخرین کدهای شاخه `main` مستقیماً به اکانت گیت‌هاب شما کپی می‌شوند.
-- ⚡ **استقرار ۱۰۰٪ رایگان در Cloudflare Pages**: بیلد استاتیک Astro اجرا شده و وب‌سایت شما روی دامنه امن و پرسرعت `https://your-project.pages.dev` فعال می‌شود.
-- 🛠️ **اتصال خودکار به CMS**: پنل مدیریت بدون کد در مسیر `/admin` فعال شده و آماده مدیریت محتوا و قالب‌هاست.
+👉 **[فورک کردن ریپازیتوری در GitHub](https://github.com/MEHR1DAD/FreeSite/fork)**
+
+---
+
+### 🟠 گام دوم: اتصال و استقرار در Cloudflare Pages
+وارد بخش ساخت پروژه Pages در داشبورد کلودفلر شوید:
+
+👉 **[ورود به بخش ساخت پروژه در Cloudflare Pages](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)**
+
+1. مخزن فورک‌شده (`FreeSite`) را از لیست ریپازیتوری‌های گیت‌هاب خود انتخاب نمایید.
+2. در بخش تنظیمات بیلد (**Build settings**):
+   - **Framework preset**: گزینه **`Astro`** را انتخاب کنید (دستور `npm run build` و پوشه `dist` خودکار تکمیل می‌شوند).
+3. دکمه **Save and Deploy** را بزنید.
+
+🎉 ظرف ۱ دقیقه، وب‌سایت شما بر روی دامنه اختصاصی `https://your-project.pages.dev` فعال و با هر تغییر در گیت‌هاب به صورت خودکار به‌روزرسانی خواهد شد!
 
 ---
 
