@@ -3,12 +3,8 @@
 #### Powered by Astro SSG + Tailwind CSS + Sveltia/Decap CMS + Cloudflare Pages
 
 <p align="center">
-  <a href="https://github.com/MEHR1DAD/FreeSite/generate">
-    <img src="https://img.shields.io/badge/1._Create_Repo-Use_This_Template-2ea44f?style=for-the-badge&logo=github&logoColor=white" alt="Use this template" height="40" />
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://dash.cloudflare.com/?to=/:account/pages/new/provider/github">
-    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="40" />
+  <a href="https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite">
+    <img src="https://deploy.workers.cloudflare.com/button" alt="Deploy to Cloudflare Pages" height="42" />
   </a>
 </p>
 
@@ -69,30 +65,16 @@
 
 ---
 
-## 🚀 راهنمای استقرار در Cloudflare Pages (گام‌به‌گام و ۱۰۰٪ رایگان)
+## 🚀 استقرار با ۱ کلیک (1-Click Auto Deploy to Cloudflare Pages)
 
-استقرار FreeSite در ۲ مرحله بسیار ساده و ظرف کمتر از ۲ دقیقه انجام می‌شود:
+تنها با یک کلیک روی دکمه زیر، مخزن به صورت خودکار در حساب گیت‌هاب شما فورک شده و بلافاصله فرآیند بیلد و استقرار در Cloudflare Pages آغاز می‌گردد:
 
-### 🟢 گام ۱: ساخت مخزن اختصاصی در حساب گیت‌هاب شما
-روی دکمه زیر کلیک کنید تا یک مخزن کاملاً مستقل و به‌روز با آخرین کدهای پروژه در اکانت گیت‌هاب شما ساخته شود:
+[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MEHR1DAD/FreeSite)
 
-[![Use this template](https://img.shields.io/badge/GitHub-Use_this_template-2ea44f?style=for-the-badge&logo=github)](https://github.com/MEHR1DAD/FreeSite/generate)
-
-*(در صفحه بازشده، نام دلخواهی برای ریپازیتوری خود انتخاب کرده و روی دکمه سبز **Create repository from template** کلیک کنید).*
-
----
-
-### 🟠 گام ۲: اتصال و استقرار در Cloudflare Pages
-پس از ساخت مخزن، روی دکمه زیر کلیک کنید تا وارد بخش Pages در کلودفلر شوید:
-
-[![Deploy to Cloudflare Pages](https://deploy.workers.cloudflare.com/button)](https://dash.cloudflare.com/?to=/:account/pages/new/provider/github)
-
-1. در لیست مخازن گیت‌هاب، ریپازیتوری جدیدی که در گام اول ساختید را انتخاب فرمایید.
-2. در بخش تنظیمات بیلد (**Build settings**):
-   - **Framework preset**: گزینه **`Astro`** را انتخاب کنید (فیلدهای `npm run build` و `dist` خودکار تکمیل می‌شوند).
-3. روی دکمه **Save and Deploy** کلیک کنید.
-
-🎉 ظرف ۱ دقیقه، وب‌سایت استاتیک شما بر روی دامنه اختصاصی و فوق‌سریع `https://your-project.pages.dev` آنلاین و فعال خواهد بود!
+### 🌟 ویژگی‌های فرآیند استقرار ۱-کلیکه:
+- 🔄 **فورک خودکار آخرین نسخه**: بدون نیاز به ساخت دستی مخزن یا پر کردن فرم‌های گیت‌هاب؛ آخرین کدهای شاخه `main` مستقیماً به اکانت گیت‌هاب شما کپی می‌شوند.
+- ⚡ **استقرار ۱۰۰٪ رایگان در Cloudflare Pages**: بیلد استاتیک Astro اجرا شده و وب‌سایت شما روی دامنه امن و پرسرعت `https://your-project.pages.dev` فعال می‌شود.
+- 🛠️ **اتصال خودکار به CMS**: پنل مدیریت بدون کد در مسیر `/admin` فعال شده و آماده مدیریت محتوا و قالب‌هاست.
 
 ---
 
